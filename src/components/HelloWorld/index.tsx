@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
-
-// See src/declarations.d.ts
-import Button from "react-native-button";
+import { View, Text, Button } from "react-native";
 
 interface Props {
     max: number;
@@ -40,7 +37,7 @@ export default class HelloWorld extends Component<Props, State> {
 
         return (
             <View style={this.props.style}>
-                <Button onPress={this.onPress}>
+                <Button title="Button Here" color="red" onPress={this.onPress}>
                     {message} ({counter})
                 </Button>
             </View>
