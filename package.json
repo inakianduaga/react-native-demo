@@ -1,0 +1,24 @@
+{
+  "name": "ReactNativeTypescriptDemo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start --transformer node_modules/react-native-sm-transformer --skipflow",
+    "android": "node ./node_modules/.bin/react-native run-android",
+    "ios": "node ./node_modules/.bin/react-native run-ios",
+    "prebuild": "node node_modules/.bin/rimraf build",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-native": "0.43.2"
+  },
+  "devDependencies": {
+    "@types/react": "^15.0.21",
+    "@types/react-native": "^0.42.16",
+    "react-native-sm-transformer": "^1.0.3",
+    "rimraf": "^2.6.0",
+    "tslint": "^4.4.2",
+    "typescript": "^2.2.2"
+  }
+}
