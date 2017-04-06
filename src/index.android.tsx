@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ViewStyle, TextStyle } from "react-native";
 
 import HelloWorld from "./components/HelloWorld/index";
 
-interface Props {
-
-}
-
-interface State {
-
-}
+interface Props {}
+interface State {}
 
 export default class App extends Component<Props, State> {
     render() {
@@ -37,21 +32,21 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#F5FCFF",
-    } as React.ViewStyle,
+    } as ViewStyle,
 
     welcome: {
         fontSize: 20,
         textAlign: "center",
         margin: 10,
-    } as React.TextStyle,
+    } as TextStyle,
 
     instructions: {
         textAlign: "center",
         color: "#333333",
         marginBottom: 5,
-    } as React.TextStyle,
+    } as TextStyle,
 
     helloworld: {
         marginVertical: 15,
-    } as React.ViewStyle,
+    } as ViewStyle,
 });

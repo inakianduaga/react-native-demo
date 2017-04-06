@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, ViewStyle } from "react-native";
 
 interface Props {
     max: number;
     message?: string | number;
     alert?: string | number;
-    style: React.ViewStyle;
+    style: ViewStyle;
 }
 
 interface State {
@@ -15,7 +15,7 @@ interface State {
 export default class HelloWorld extends Component<Props, State> {
     static defaultProps = {
         message: "Press here",
-        alert: "Hello world!",
+        alert: "You clicked too much! Resetting counter...",
     };
 
     state = {
@@ -40,6 +40,11 @@ export default class HelloWorld extends Component<Props, State> {
                 <Button title="Button Here" color="red" onPress={this.onPress}>
                     {message} ({counter})
                 </Button>
+                <View style={{ alignItems: "center"}}>
+                    <Text>
+                        Clicks: { this.state.counter }
+                    </Text>
+                </View>
             </View>
         );
     }
