@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { View, StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
 
-import HelloWorld from "./components/HelloWorld";
-import WelcomeAndroid from "./components/Welcome.android";
-import WelcomeIos from "./components/Welcome.ios";
+import HelloWorld from "../components/HelloWorld";
+import WelcomeAndroid from "../components/Welcome.android";
+import WelcomeIos from "../components/Welcome.ios";
 
 interface Props {}
 interface State {}
 
-export default class App extends Component<Props, State> {
+export default class Main extends Component<Props, State> {
     render() {
         return (
             <View style={styles.container}>
