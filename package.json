@@ -6,9 +6,10 @@
     "start": "react-native start --skipflow",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "prebuild": "node node_modules/.bin/rimraf build",
+    "prebuild": "rimraf build",
     "build": "tsc",
-    "build:watch": "tsc -w"
+    "build:watch": "tsc -w",
+    "prebuild:watch": "rimraf build"
   },
   "dependencies": {
     "react": "^15.4.2",
@@ -17,6 +18,7 @@
   "devDependencies": {
     "@types/react": "^15.0.21",
     "@types/react-native": "^0.42.16",
+    "code-push-cli": "^1.12.9-beta",
     "react-native-sm-transformer": "^1.0.3",
     "rimraf": "^2.6.0",
     "tslint": "^4.4.2",
