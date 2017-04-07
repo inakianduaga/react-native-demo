@@ -5,6 +5,6 @@ import { combineEpics } from 'redux-observable';
 export const rootEpic = combineEpics();
 
 export const rootReducer = combineReducers({
-    // every modules reducer should be define here
-    main
-  });
+  // every modules reducer should be define here
+  main
+});
