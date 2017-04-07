@@ -12,12 +12,12 @@ export default class App extends Component<Props, State> {
     render() {
         return (
             <View style={styles.container}>
-                {
+                { 
+                    /* Platform specific component example */
                     Platform.OS === 'ios' ? 
                         <WelcomeIos style={ styles.instructions} /> :
                         <WelcomeAndroid style={ styles.instructions} />
-                }
-                
+                }                
                 <HelloWorld style={styles.helloworld} max={10} />
             </View>
         );
