@@ -16,13 +16,12 @@ const updateImages = (state: IState, action: IAction.IUpdateImages) => ({...stat
 
 const selectPage = (state: IState, action: IAction.ISelectPage) => ({...state, currentPage: action.payload})
 
-const main = (state = initialState, action: IAction.IStandardAction) => {
+const main = (state = initialState, action: IAction.IApplicationAction) => {
   switch (action.type) {
     case IAction.UPDATE_IMAGES:
-      return updateImages(state, action as IAction.IUpdateImages);
+      return updateImages(state, action);
     case IAction.SELECT_PAGE:
-      return selectPage(state, action as IAction.ISelectPage);
-
+      return selectPage(state, action);
     default:
       return state;
   }
