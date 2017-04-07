@@ -1,8 +1,11 @@
-# React Native Typescript demo
+# React Native Typescript demo [WIP]
 
-Based on [mrpatiwi/ReactNativeTS](https://github.com/mrpatiwi/ReactNativeTS)
+> Small [React Native](https://facebook.github.io/react-native/) project that integrates [Typescript](https://www.typescriptlang.org/).
 
-Minimal template of a [React Native](https://facebook.github.io/react-native/) project with [Typescript](https://www.typescriptlang.org/).
+## Features
+
+- [x] Typescript integration
+- [x] Redux integration 
 
 ## Getting Started
 
@@ -48,3 +51,7 @@ yarn run ios
 ```sh
 yarn run android
 ```
+
+## Acknowledgements:
+
+Based on [mrpatiwi/ReactNativeTS](https://github.com/mrpatiwi/ReactNativeTS) as starting point.
