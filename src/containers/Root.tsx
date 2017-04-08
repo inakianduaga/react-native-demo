@@ -6,10 +6,12 @@ import Main from "./Main";
 type IProps = {}
 type IState = {}
 
+const store = configureStore();
+
 export default class App extends Component<IProps, IState> {
   render() {
     return (
-      <Provider store={configureStore()}>
+      <Provider store={ store }>
         <Main />
       </Provider>
     );
