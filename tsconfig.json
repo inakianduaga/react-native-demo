@@ -21,7 +21,8 @@
         "paths": {
             "*": ["*", "*.ios", "*.android"],
             "redux": ["node_modules/redux/index.d.ts"],
-            "redux-observable": ["node_modules/redux-observable/index.d.ts"]
+            "redux-observable": ["node_modules/redux-observable/index.d.ts"],
+            "immutable": ["node_modules/immutable/dist/immutable.d.ts"]
         }
     },
     "filesGlob": [

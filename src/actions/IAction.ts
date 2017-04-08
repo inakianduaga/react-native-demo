@@ -1,7 +1,7 @@
-import { IFetchImages } from './IAction';
-export const FETCH_IMAGES = 'FETCH_IMAGES'
-export const UPDATE_IMAGES = 'UPDATE_IMAGES'
-export const SELECT_IMAGE = 'SELECT_IMAGE'
+import { IMovie } from '../models/Movie'
+export const FETCH_MOVIES = 'FETCH_MOVIES'
+export const UPDATE_MOVIES = 'UPDATE_MOVIES'
+export const SELECT_MOVIE = 'SELECT_MOVIE'
 export const SELECT_PAGE = 'SELECT_PAGE'
 
 export interface IStandardAction {
@@ -14,25 +14,25 @@ export interface ISelectPage extends IStandardAction {
   payload: number
 }
 
-export interface ISelectImage extends IStandardAction {
-  type: 'SELECT_IMAGE',
+export interface ISelectMovie extends IStandardAction {
+  type: 'SELECT_MOVIE',
   payload: number
 }
 
-export interface IFetchImages extends IStandardAction {
-  type: 'FETCH_IMAGES',
+export interface IFetchMovies extends IStandardAction {
+  type: 'FETCH_MOVIES',
   payload: null
 }
 
-export interface IUpdateImages extends IStandardAction {
-  type: 'UPDATE_IMAGES',
-  payload: number[]
+export interface IUpdateMovies extends IStandardAction {
+  type: 'UPDATE_MOVIES',
+  payload: IMovie[]
 }
 
 // Include all actions in the system to do exhaustive pattern matching
 // See TS tagged union types: https://blog.mariusschulz.com/2016/11/03/typescript-2-0-tagged-union-types
 export type IApplicationAction = 
-  | ISelectImage 
+  | ISelectMovie
   | ISelectPage
-  | IFetchImages
-  | IUpdateImages
+  | IFetchMovies
+  | IUpdateMovies

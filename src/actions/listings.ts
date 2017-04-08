@@ -1,22 +1,23 @@
 import * as IAction from './IAction';
+import { IMovie } from '../models/Movie'
 
 export const selectPage = (page: number): IAction.ISelectPage => ({
   type: IAction.SELECT_PAGE,
   payload: page
 });
 
-export const selectImage = (id: number): IAction.ISelectImage => ({
-  type: IAction.SELECT_IMAGE,
+export const selectMovie = (id: number): IAction.ISelectMovie => ({
+  type: IAction.SELECT_MOVIE,
   payload: id
 });
 
-export const fetchImages = (): IAction.IFetchImages => ({
-  type: IAction.FETCH_IMAGES,
+export const fetchImages = (): IAction.IFetchMovies => ({
+  type: IAction.FETCH_MOVIES,
   payload: null
 });
 
-export const updateImages = (ids: number[]): IAction.IUpdateImages => ({
-  type: IAction.UPDATE_IMAGES,
+export const updateImages = (ids: IMovie[]): IAction.IUpdateMovies => ({
+  type: IAction.UPDATE_MOVIES,
   payload: ids
 });
 

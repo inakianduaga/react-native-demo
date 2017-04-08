@@ -1,25 +1,33 @@
 import * as IAction from '../actions/IAction'
+import { Record, List } from 'immutable'
+import { toRecord as movieRecord, IMovie } from '../models/Movie'
 
 type IState = {
-  images: number[],
+  movies: List<IMovie>,
   currentPage: number,
   fetching: boolean
 }
 
 const initialState: IState = {
-  images: [],
+  movies: List<IMovie>(),
   currentPage: 1,
   fetching: false
 }
 
-const updateImages = (state: IState, action: IAction.IUpdateImages) => ({...state, images: state.images.concat(action.payload)})
+// The redux state is an instance of the state record class
+type IStateRecord = Record.Instance<IState>
 
-const selectPage = (state: IState, action: IAction.ISelectPage) => ({...state, currentPage: action.payload})
+const initialStateRecord: IStateRecord = new (Record(initialState, "Redux Store record"))()
 
-const main = (state = initialState, action: IAction.IApplicationAction) => {
+const updateMovies = (state: IStateRecord, action: IAction.IUpdateMovies) =>   
+  state.setIn("movies", action.payload.map(movie => movieRecord(movie)))
+
+const selectPage = (state: IStateRecord, action: IAction.ISelectPage) => state.setIn("currentPage", action.payload)
+
+const main = (state = initialStateRecord, action: IAction.IApplicationAction): IStateRecord => {
   switch (action.type) {
-    case IAction.UPDATE_IMAGES:
-      return updateImages(state, action);
+    case IAction.UPDATE_MOVIES:
+      return updateMovies(state, action);
     case IAction.SELECT_PAGE:
       return selectPage(state, action);
     default:
