@@ -7,9 +7,10 @@ import HelloWorld from "../components/HelloWorld";
 import Listings from '../components/Listings'
 import WelcomeAndroid from "../components/Welcome.android";
 import WelcomeIos from "../components/Welcome.ios";
-import { IStateRecord, IState } from '../reducers/main'
+import { IState as IMainState } from '../reducers/main'
+import { IStateRecord as IRootState } from '../reducers/root'
 
-interface Props extends IState {
+interface IMainProps extends IMainState {
   dispatch: Dispatch<any>,
 }
 
@@ -30,7 +31,7 @@ const assertNever = (x: never): never => {
     throw new Error("Unexpected navigation value: " + x);
 }
 
-class Main extends Component<Props, {}> {
+class Main extends Component<IMainProps, {}> {
   render() {
     switch (this.props.navigation) {
       case 'intro':
@@ -48,11 +49,11 @@ class Main extends Component<Props, {}> {
 // Hook up component to the redux store
 export default connect(
   // (state: IStateRecord) => state.toJS(), // Non-performant, better manually`
-  (state: IStateRecord) => ({ 
-    movies: state.get('movies'), 
-    currentPage: state.get('currentPage'), 
-    fetching: state.get('fetching'), 
-    navigation: state.get('navigation')
+  (state: IRootState) => ({ 
+    movies: state.getIn(['main', 'movies']), 
+    currentPage: state.getIn(['main', 'currentPage']), 
+    fetching: state.getIn(['main', 'fetching']), 
+    navigation: state.getIn(['main', 'navigation'])
   }),
   dispatch => ({ dispatch })
 )(Main);

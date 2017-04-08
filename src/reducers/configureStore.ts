@@ -1,6 +1,7 @@
 import { rootReducer, rootEpic } from './root';
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
+
 declare const module: any;
 
 const epicMiddleware = createEpicMiddleware(rootEpic);
@@ -19,7 +20,6 @@ const configureStore = () => {
       store.replaceReducer(nextRootReducer);
     });
   }
-
 
   return store;
 }
