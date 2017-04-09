@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
 import { Dispatch } from 'redux'
-import { IState as IMainState} from '../reducers/listings'
-import { navigateTo } from '../actions/navigation'
+import { IState as IListingsState} from '../../reducers/listings'
+import { navigateTo } from '../../actions/navigation'
 
-interface IListingProps extends IMainState {
+interface IListingProps extends IListingsState {
   dispatch: Dispatch<any>,
 }
 

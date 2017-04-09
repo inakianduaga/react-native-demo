@@ -4,15 +4,13 @@ import { connect } from 'react-redux';
 import { View, Text } from "react-native";
 
 import Intro from "../components/intro/Intro";
-import Listings from '../components/Listings'
+import Listings from '../components/listings/Listings'
 import { IState as IListingsState } from '../reducers/listings'
-import { IStateRecord as IRootState } from '../reducers/root'
+import { IStateRecord as IRootState } from '../reducers/index'
 
 interface IMainProps extends IListingsState {
   dispatch: Dispatch<any>,
 }
-
-const Detail = () => <View><Text>TODO</Text></View>
 
 const assertNever = (x: never): never => {
     throw new Error("Unexpected navigation value: " + x);
@@ -26,7 +24,7 @@ class Main extends Component<IMainProps, {}> {
       case 'listings':
         return <Listings { ...this.props } />
       case 'detail':
-        return <Detail />
+        return <View><Text>TODO</Text></View>
       default:
         return assertNever(this.props.navigation); // Exhaustive pattern matching
     }

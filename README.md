@@ -40,6 +40,10 @@ npm start ios
 npm start android
 ```
 
+## Debugging:
+
+- Via chrome on http://localhost:8081/debugger-ui
+
 ## Acknowledgements:
 
 Based on [mrpatiwi/ReactNativeTS](https://github.com/mrpatiwi/ReactNativeTS) as starting point.
