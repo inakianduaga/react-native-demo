@@ -11,12 +11,12 @@ export const selectMovie = (id: number) => ({
   payload: id
 });
 
-export const fetchImages = () => ({
+export const fetchMovies = () => ({
   type: IAction.FETCH_MOVIES,
   payload: null
 });
 
-export const updateImages = (ids: IMovie[]) => ({
+export const updateMovies = (ids: IMovie[]) => ({
   type: IAction.UPDATE_MOVIES,
   payload: ids
 });
@@ -25,5 +25,3 @@ export const updateSearchTerm = (term: string) => ({
   type: IAction.UPDATE_SEARCH_TERM,
   payload: term
 });
-
-

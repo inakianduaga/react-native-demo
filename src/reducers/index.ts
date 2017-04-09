@@ -8,6 +8,7 @@ import { IStateRecord as IListingsState } from './listings'
 import listings from './listings';
 import { IStateRecord as INavigationState } from './navigation'
 import navigation from './navigation';
+import { fetchMoviesAfterDebouncedUpdates, processFetch } from '../actions/searchEpic'
 
 // Redux-immutable override type declaration
 // declare function combineReducers<S>(reducers: Redux.ReducersMapObject, getDefaultState?: () => Record.Instance<any> | Collection<string, any> ): Redux.Reducer<S>;
@@ -15,7 +16,10 @@ declare module "redux-immutable" {
     function combineReducers<S>(reducers: Redux.ReducersMapObject, getDefaultState?: () => Record.Instance<any> | Collection<string, any> ): Redux.Reducer<S>;
 }
 
-export const rootEpic = combineEpics();
+export const rootEpic = combineEpics(
+  fetchMoviesAfterDebouncedUpdates,
+  processFetch,
+);
 
 type IState = {
   listings: IListingsState,
