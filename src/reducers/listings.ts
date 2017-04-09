@@ -1,11 +1,12 @@
 import * as IAction from '../actions/IAction'
 import { Record, List } from 'immutable'
-import { toRecord as movieRecord, IMovie } from '../models/Movie'
+import { toRecord as toMovieRecord, IMovieInstance } from '../models/Movie'
 
 export type INavigationState = 'intro' | 'listings' | 'detail'
 
 export type IState = {
-  movies: List<IMovie>,
+  movies: List<IMovieInstance>,
+  totalResults: number,
   currentPage: number,
   fetching: boolean,
   navigation: INavigationState,
@@ -13,7 +14,8 @@ export type IState = {
 }
 
 const initialState: IState = {
-  movies: List<IMovie>(),
+  movies: List<IMovieInstance>(),
+  totalResults: 0,
   currentPage: 1,
   fetching: false,
   navigation: 'intro',
@@ -25,25 +27,32 @@ export type IStateRecord = Record.Instance<IState>
 
 const initialStateRecord: IStateRecord = new (Record(initialState, "Redux Store record"))()
 
-const updateMovies = (state: IStateRecord, action: IAction.IUpdateMovies) =>   
-  state.setIn("movies", action.payload.map(movie => movieRecord(movie)))
+const updateMovies = (state: IStateRecord, { payload }: IAction.IUpdateMovies) => 
+  state
+    .setIn(['movies'], List(payload.movies.map(movie => toMovieRecord(movie))))
+    .set("totalResults", payload.totalResults)
+    .set('fetching', false)
 
 const selectPage = (state: IStateRecord, action: IAction.ISelectPage) => state.set("currentPage", action.payload)
 
-const navigateTo = (state: IStateRecord, action: IAction.INavigateTo) => state.set('navigation', action.payload)
+const updateSearchTerm = (state: IStateRecord, action: IAction.IUpdateSearchTerm) => state.set("searchTerm", action.payload)
 
-const main = (state = initialStateRecord, action: IAction.IApplicationAction): IStateRecord => {
+const updateFetching = (state: IStateRecord, action: IAction.IIsFetching) => state.set('fetching', action.payload)
+
+const reducer = (state = initialStateRecord, action: IAction.IApplicationAction): IStateRecord => {
+  console.log('ACTION FIRED:', action.type)
   switch (action.type) {
-    case IAction.NAVIGATE_TO:
-      console.log('NAVIGATE TO TRIGGERED!!!')
-      return navigateTo(state, action);
     case IAction.UPDATE_MOVIES:
       return updateMovies(state, action);
     case IAction.SELECT_PAGE:
       return selectPage(state, action);
+    case IAction.UPDATE_SEARCH_TERM:
+      return updateSearchTerm(state, action);
+    case IAction.IS_FETCHING:
+      return updateFetching(state, action);
     default:
       return state;
   }
 }
 
-export default main;
+export default reducer;

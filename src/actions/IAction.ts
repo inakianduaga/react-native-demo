@@ -6,6 +6,8 @@ export const UPDATE_MOVIES = 'UPDATE_MOVIES'
 export const SELECT_MOVIE = 'SELECT_MOVIE'
 export const SELECT_PAGE = 'SELECT_PAGE'
 export const NAVIGATE_TO = 'NAVIGATE_TO'
+export const UPDATE_SEARCH_TERM = 'UPDATE_SEARCH_TERM'
+export const IS_FETCHING = 'IS_FETCHING'
 
 export interface IStandardAction {
     type: String,
@@ -29,12 +31,25 @@ export interface IFetchMovies extends IStandardAction {
 
 export interface IUpdateMovies extends IStandardAction {
   type: 'UPDATE_MOVIES',
-  payload: IMovie[]
+  payload: {
+    movies: IMovie[],
+    totalResults: number
+  }
 }
 
 export interface INavigateTo extends IStandardAction {
   type: 'NAVIGATE_TO',
   payload: INavigationState
+}
+
+export interface IUpdateSearchTerm extends IStandardAction {
+  type: 'UPDATE_SEARCH_TERM',
+  payload: string
+}
+
+export interface IIsFetching extends IStandardAction {
+  type: 'IS_FETCHING',
+  payload: boolean
 }
 
 // Include all actions in the system to do exhaustive pattern matching
@@ -45,3 +60,5 @@ export type IApplicationAction =
   | IFetchMovies
   | IUpdateMovies
   | INavigateTo
+  | IUpdateSearchTerm
+  | IIsFetching

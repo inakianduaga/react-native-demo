@@ -24,7 +24,7 @@ const Intro = ({ dispatch }: IProps) => {
           <WelcomeAndroid style={styles.instructions} />
       }
       <View style={{ backgroundColor: '#0dbd0d', marginTop: '10%', padding: '1%', width: "100%", }}>
-        <Button title="Go to Listings &raquo;" color="white" onPress={navigateToListings} />
+        <Button title="Go to Movies &raquo;" color="white" onPress={navigateToListings} />
       </View>
     </View>
   )
