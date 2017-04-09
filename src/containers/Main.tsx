@@ -1,64 +1,47 @@
 import React, { Component } from "react";
-import { bindActionCreators } from 'redux';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { View, StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
+import { View, Text } from "react-native";
 
-import HelloWorld from "../components/HelloWorld";
-import WelcomeAndroid from "../components/Welcome.android";
-import WelcomeIos from "../components/Welcome.ios";
+import Intro from "../components/intro/Intro";
+import Listings from '../components/Listings'
+import { IState as IListingsState } from '../reducers/listings'
+import { IStateRecord as IRootState } from '../reducers/root'
 
-interface Props {
-    state: any,
-    dispatch: () => void,
-    actions: {}
+interface IMainProps extends IListingsState {
+  dispatch: Dispatch<any>,
 }
-interface State {}
 
-class Main extends Component<Props, State> {
-    render() {
-        return (
-            <View style={styles.container}>
-                { 
-                    /* Platform specific component example */
-                    Platform.OS === 'ios' ? 
-                        <WelcomeIos style={ styles.instructions} /> :
-                        <WelcomeAndroid style={ styles.instructions} />
-                }                
-                <HelloWorld style={styles.helloworld} max={10} />
-            </View>
-        );
+const Detail = () => <View><Text>TODO</Text></View>
+
+const assertNever = (x: never): never => {
+    throw new Error("Unexpected navigation value: " + x);
+}
+
+class Main extends Component<IMainProps, {}> {
+  render() {
+    switch (this.props.navigation) {
+      case 'intro':
+        return <Intro dispatch={this.props.dispatch} />
+      case 'listings':
+        return <Listings { ...this.props } />
+      case 'detail':
+        return <Detail />
+      default:
+        return assertNever(this.props.navigation); // Exhaustive pattern matching
     }
+  } 
 }
 
-export default connect(state => ({
-    state: state
+// Hook up component to the redux store
+export default connect(
+  // (state: IStateRecord) => state.toJS(), // Non-performant, better manually`
+  (state: IRootState) => ({ 
+    movies: state.getIn(['listings', 'movies']), 
+    currentPage: state.getIn(['listings', 'currentPage']), 
+    fetching: state.getIn(['listings', 'fetching']), 
+    navigation: state.getIn(['navigation', 'navigation'])
   }),
-  (dispatch) => ({
-    actions: bindActionCreators({}, dispatch)
-  })
+  dispatch => ({ dispatch })
 )(Main);
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#F5FCFF",
-    } as ViewStyle,
-
-    welcome: {
-        fontSize: 20,
-        textAlign: "center",
-        margin: 10,
-    } as TextStyle,
-
-    instructions: {
-        textAlign: "center",
-        color: "#333333",
-        marginBottom: 5,
-    } as TextStyle,
-
-    helloworld: {
-        marginVertical: 15,
-    } as ViewStyle,
-});

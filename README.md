@@ -1,4 +1,4 @@
-# React Native Typescript demo [WIP]
+# React Native Typescript Demo [WIP]
 
 > Small [React Native](https://facebook.github.io/react-native/) project that integrates [Typescript](https://www.typescriptlang.org/).
 
@@ -6,50 +6,38 @@
 
 - [x] Typescript integration
 - [x] Redux integration 
+- [x] Hot reloading working
+- [x] ImmutableJS integration (redux state as Immutable Record)
+- [x] Strong TypeScript compiler checks 
+- [ ] Redux observable for action observables
 
 ## Getting Started
 
-* Requirements: [Node.js](https://nodejs.org) and [Yarn](https://yarnpkg.com/)
+* Requirements: [Node.js](https://nodejs.org)
 
 Clone this repository:
 
 ```sh
-git clone https://github.com/mrpatiwi/ReactNativeTS.git
-cd ReactNativeTS
+git clone https://github.com/inakianduaga/react-native-demo.git
+cd react-native-demo
 ```
 
 Install dependencies:
 
 ```sh
-yarn
+npm install
 ```
 
-Start React Native server:
+Start React Native server (launches react native packager on port `8081` and Typescript compiler in watch mode:
 
 ```sh
-yarn start
+npm start
 ```
 
-Build the source-code with Typescript:
-
-```sh
-# Build once
-yarn run build
-
-# Build and watch for changes
-yarn run build -- --watch
+Launch IOS/Android:
 ```
-
-### iOS
-
-```sh
-yarn run ios
-```
-
-### Android
-
-```sh
-yarn run android
+npm start ios
+npm start android
 ```
 
 ## Acknowledgements:
