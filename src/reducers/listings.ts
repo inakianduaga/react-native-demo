@@ -8,14 +8,16 @@ export type IState = {
   movies: List<IMovie>,
   currentPage: number,
   fetching: boolean,
-  navigation: INavigationState
+  navigation: INavigationState,
+  searchTerm: string | null
 }
 
 const initialState: IState = {
   movies: List<IMovie>(),
   currentPage: 1,
   fetching: false,
-  navigation: 'intro'
+  navigation: 'intro',
+  searchTerm: null
 }
 
 // The redux state is an instance of the state record class

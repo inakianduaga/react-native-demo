@@ -1,5 +1,5 @@
 import { IMovie } from '../models/Movie'
-import { INavigationState } from '../reducers/main'
+import { INavigationState } from '../reducers/navigation'
 
 export const FETCH_MOVIES = 'FETCH_MOVIES'
 export const UPDATE_MOVIES = 'UPDATE_MOVIES'

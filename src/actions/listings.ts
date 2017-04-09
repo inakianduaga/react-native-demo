@@ -1,6 +1,5 @@
 import * as IAction from './IAction';
 import { IMovie } from '../models/Movie'
-import { INavigationState } from '../reducers/main'
 
 export const selectPage = (page: number) => ({
   type: IAction.SELECT_PAGE,
@@ -22,9 +21,6 @@ export const updateImages = (ids: IMovie[]) => ({
   payload: ids
 });
 
-export const navigateTo = (to: INavigationState) => ({
-  type: IAction.NAVIGATE_TO,
-  payload: to
-})
+
 
 
