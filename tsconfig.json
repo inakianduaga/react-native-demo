@@ -17,6 +17,8 @@
         "noImplicitReturns": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
+        "pretty": true,
+        "noEmitOnError": true,
         "baseUrl": ".",
         "paths": {
             "*": ["*", "*.ios", "*.android"],

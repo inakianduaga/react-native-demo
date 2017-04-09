@@ -26,13 +26,14 @@ const initialStateRecord: IStateRecord = new (Record(initialState, "Redux Store 
 const updateMovies = (state: IStateRecord, action: IAction.IUpdateMovies) =>   
   state.setIn("movies", action.payload.map(movie => movieRecord(movie)))
 
-const selectPage = (state: IStateRecord, action: IAction.ISelectPage) => state.setIn("currentPage", action.payload)
+const selectPage = (state: IStateRecord, action: IAction.ISelectPage) => state.set("currentPage", action.payload)
 
-const navigateTo = (state: IStateRecord, action: IAction.INavigateTo) => state.setIn('navigation', action.payload)
+const navigateTo = (state: IStateRecord, action: IAction.INavigateTo) => state.set('navigation', action.payload)
 
 const main = (state = initialStateRecord, action: IAction.IApplicationAction): IStateRecord => {
   switch (action.type) {
     case IAction.NAVIGATE_TO:
+      console.log('NAVIGATE TO TRIGGERED!!!')
       return navigateTo(state, action);
     case IAction.UPDATE_MOVIES:
       return updateMovies(state, action);

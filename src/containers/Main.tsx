@@ -14,7 +14,7 @@ interface IMainProps extends IMainState {
   dispatch: Dispatch<any>,
 }
 
-const Intro = () =>
+const Intro = ({ dispatch } : { dispatch: Dispatch<any> }) =>
   <View style={styles.container}>
     {
       /* Platform specific component example */
@@ -22,7 +22,7 @@ const Intro = () =>
         <WelcomeIos style={styles.instructions} /> :
         <WelcomeAndroid style={styles.instructions} />
     }
-    <HelloWorld style={styles.helloworld} max={10} />
+    <HelloWorld style={styles.helloworld} max={10} dispatch={dispatch} />
   </View>
 
 const Detail = () => <View><Text>TODO</Text></View>
@@ -35,7 +35,7 @@ class Main extends Component<IMainProps, {}> {
   render() {
     switch (this.props.navigation) {
       case 'intro':
-        return <Intro />
+        return <Intro  dispatch={this.props.dispatch} />
       case 'listings':
         return <Listings { ...this.props } />
       case 'detail':
