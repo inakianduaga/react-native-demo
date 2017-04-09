@@ -22,7 +22,7 @@ export const updateImages = (ids: IMovie[]) => ({
 });
 
 export const updateSearchTerm = (term: string) => ({
-  type: IAction.UPDATE_MOVIES,
+  type: IAction.UPDATE_SEARCH_TERM,
   payload: term
 });
 

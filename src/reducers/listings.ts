@@ -1,4 +1,3 @@
-import { UPDATE_SEARCH_TERM, IUpdateSearchTerm } from './../actions/IAction';
 import * as IAction from '../actions/IAction'
 import { Record, List } from 'immutable'
 import { toRecord as movieRecord, IMovie } from '../models/Movie'
@@ -35,7 +34,7 @@ const navigateTo = (state: IStateRecord, action: IAction.INavigateTo) => state.s
 
 const updateSearchTerm = (state: IStateRecord, action: IAction.IUpdateSearchTerm) => state.set("searchTerm", action.payload)
 
-const main = (state = initialStateRecord, action: IAction.IApplicationAction): IStateRecord => {
+const reducer = (state = initialStateRecord, action: IAction.IApplicationAction): IStateRecord => {
   switch (action.type) {
     case IAction.NAVIGATE_TO:
       return navigateTo(state, action);
@@ -50,4 +49,4 @@ const main = (state = initialStateRecord, action: IAction.IApplicationAction): I
   }
 }
 
-export default main;
+export default reducer;
