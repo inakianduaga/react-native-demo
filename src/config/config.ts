@@ -4,7 +4,7 @@ const config = {
       baseUrl: 'http://www.omdbapi.com/'
     },
     /* Debouncing wait for search text input (miliseconds) */
-    inputDebounce: 100
+    inputDebounce: 1000
   }
 }
 

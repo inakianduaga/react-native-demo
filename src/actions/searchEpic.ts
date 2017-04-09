@@ -19,9 +19,9 @@ export const processFetch = (action$: Rx.Observable<IApplicationAction>, store: 
     .filter(action => action.type === FETCH_MOVIES)
     .map(_ => {
       const state = store.getState();
-      const page = state.getIn('listings.currentPage');
-      const searchTerm = state.getIn('listings.searchTerm')
+      const page = state.getIn(['listings', 'currentPage']);
+      const searchTerm = state.getIn(['listings', 'searchTerm'])
       return `${config.movies.api.baseUrl}?s=${searchTerm}&page=${page}`
-    })
+    })    
     .flatMap(url => Rx.Observable.from(fetch(url)))
     .mapTo(updateMovies)
