@@ -40,8 +40,15 @@
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<!--See Allow using http in any domain -->
+	<!-- http://stackoverflow.com/questions/38418998/react-native-fetch-network-request-failed -->
 	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
+	<!--
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
@@ -52,5 +59,6 @@
 			</dict>
 		</dict>
 	</dict>
+	-->
 </dict>
 </plist>

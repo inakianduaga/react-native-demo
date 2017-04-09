@@ -6,6 +6,7 @@ export type INavigationState = 'intro' | 'listings' | 'detail'
 
 export type IState = {
   movies: List<IMovie>,
+  totalResults: number,
   currentPage: number,
   fetching: boolean,
   navigation: INavigationState,
@@ -14,6 +15,7 @@ export type IState = {
 
 const initialState: IState = {
   movies: List<IMovie>(),
+  totalResults: 0,
   currentPage: 1,
   fetching: false,
   navigation: 'intro',
@@ -26,7 +28,9 @@ export type IStateRecord = Record.Instance<IState>
 const initialStateRecord: IStateRecord = new (Record(initialState, "Redux Store record"))()
 
 const updateMovies = (state: IStateRecord, action: IAction.IUpdateMovies) =>   
-  state.setIn("movies", action.payload.map(movie => movieRecord(movie)))
+  state
+    .setIn("movies", action.payload.movies.map(movie => movieRecord(movie)))
+    .setIn("totalResults", action.payload.totalResults)
 
 const selectPage = (state: IStateRecord, action: IAction.ISelectPage) => state.set("currentPage", action.payload)
 

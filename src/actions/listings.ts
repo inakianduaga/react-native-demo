@@ -1,27 +1,30 @@
 import * as IAction from './IAction';
 import { IMovie } from '../models/Movie'
 
-export const selectPage = (page: number) => ({
+export const selectPage = (page: number): IAction.ISelectPage => ({
   type: IAction.SELECT_PAGE,
   payload: page
 });
 
-export const selectMovie = (id: number) => ({
+export const selectMovie = (id: number): IAction.ISelectMovie => ({
   type: IAction.SELECT_MOVIE,
   payload: id
 });
 
-export const fetchMovies = () => ({
+export const fetchMovies = (): IAction.IFetchMovies => ({
   type: IAction.FETCH_MOVIES,
   payload: null
 });
 
-export const updateMovies = (ids: IMovie[]) => ({
+export const updateMovies = (movies: IMovie[], totalResults: number): IAction.IUpdateMovies => ({
   type: IAction.UPDATE_MOVIES,
-  payload: ids
+  payload: {
+    movies,
+    totalResults
+  }
 });
 
-export const updateSearchTerm = (term: string) => ({
+export const updateSearchTerm = (term: string): IAction.IUpdateSearchTerm => ({
   type: IAction.UPDATE_SEARCH_TERM,
   payload: term
 });

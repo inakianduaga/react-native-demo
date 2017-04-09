@@ -6,6 +6,7 @@ import { IStateRecord } from '../reducers/index'
 import { fetchMovies, updateMovies } from './listings'
 import { IApplicationAction, IFetchMovies, IUpdateSearchTerm, FETCH_MOVIES, UPDATE_SEARCH_TERM } from './IAction'
 import config from '../config/config'
+import { IMovie } from '../models/Movie'
 
 export const fetchMoviesAfterDebouncedUpdates = (action$: Rx.Observable<IApplicationAction>): Rx.Observable<IFetchMovies> => 
   action$
@@ -24,4 +25,10 @@ export const processFetch = (action$: Rx.Observable<IApplicationAction>, store: 
       return `${config.movies.api.baseUrl}?s=${searchTerm}&page=${page}`
     })    
     .flatMap(url => Rx.Observable.from(fetch(url)))
-    .mapTo(updateMovies)
+    .flatMap(response => Rx.Observable.from(response.json()))
+    .mapTo((results: IMoviesResponse) => updateMovies(results.Search, parseInt(results.totalResults)))
+
+interface IMoviesResponse {
+  Search: IMovie[],
+  totalResults: string
+}

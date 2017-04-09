@@ -30,7 +30,10 @@ export interface IFetchMovies extends IStandardAction {
 
 export interface IUpdateMovies extends IStandardAction {
   type: 'UPDATE_MOVIES',
-  payload: IMovie[]
+  payload: {
+    movies: IMovie[],
+    totalResults: number
+  }
 }
 
 export interface IUpdateSearchTerm extends IStandardAction {
