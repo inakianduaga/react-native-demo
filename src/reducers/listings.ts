@@ -1,3 +1,4 @@
+import { UPDATE_SEARCH_TERM, IUpdateSearchTerm } from './../actions/IAction';
 import * as IAction from '../actions/IAction'
 import { Record, List } from 'immutable'
 import { toRecord as movieRecord, IMovie } from '../models/Movie'
@@ -32,15 +33,18 @@ const selectPage = (state: IStateRecord, action: IAction.ISelectPage) => state.s
 
 const navigateTo = (state: IStateRecord, action: IAction.INavigateTo) => state.set('navigation', action.payload)
 
+const updateSearchTerm = (state: IStateRecord, action: IAction.IUpdateSearchTerm) => state.set("searchTerm", action.payload)
+
 const main = (state = initialStateRecord, action: IAction.IApplicationAction): IStateRecord => {
   switch (action.type) {
     case IAction.NAVIGATE_TO:
-      console.log('NAVIGATE TO TRIGGERED!!!')
       return navigateTo(state, action);
     case IAction.UPDATE_MOVIES:
       return updateMovies(state, action);
     case IAction.SELECT_PAGE:
       return selectPage(state, action);
+    case IAction.UPDATE_SEARCH_TERM:
+      return updateSearchTerm(state, action);
     default:
       return state;
   }

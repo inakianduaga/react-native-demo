@@ -21,6 +21,9 @@ export const updateImages = (ids: IMovie[]) => ({
   payload: ids
 });
 
-
+export const updateSearchTerm = (term: string) => ({
+  type: IAction.UPDATE_MOVIES,
+  payload: term
+});
 
 

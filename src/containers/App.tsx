@@ -38,7 +38,8 @@ export default connect(
     movies: state.getIn(['listings', 'movies']), 
     currentPage: state.getIn(['listings', 'currentPage']), 
     fetching: state.getIn(['listings', 'fetching']), 
-    navigation: state.getIn(['navigation', 'navigation'])
+    searchTerm: state.getIn(['listings', 'searchTerm']),
+    navigation: state.getIn(['navigation', 'navigation']),
   }),
   dispatch => ({ dispatch })
 )(Main);
