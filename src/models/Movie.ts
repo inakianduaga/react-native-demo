@@ -10,7 +10,9 @@ export type IMovie = {
 
 export type IMovieRecord = Record.Class<IMovie>
 
-export const toRecord = (movie: IMovie): Record.Instance<IMovie> => 
+export type IMovieInstance = Record.Instance<IMovie>
+
+export const toRecord = (movie: IMovie): IMovieInstance => 
   new (Record({
     title: "",
     year: "",

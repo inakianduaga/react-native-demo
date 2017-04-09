@@ -3,21 +3,26 @@ import 'rxjs' // Monkey patches the Observable prototype w/ entire Rx library
 import * as Rx from 'rxjs'
 import { Store } from 'redux'
 import { IStateRecord } from '../reducers/index'
-import { fetchMovies, updateMovies } from './listings'
-import { IApplicationAction, IFetchMovies, IUpdateSearchTerm, FETCH_MOVIES, UPDATE_SEARCH_TERM } from './IAction'
+import { fetchMovies, updateMovies, isFetching } from './listings'
+import * as IAction from './IAction'
 import config from '../config/config'
-import { IMovie } from '../models/Movie'
+import { IMoviesResponse } from '../api/movies'
 
-export const fetchMoviesAfterDebouncedUpdates = (action$: Rx.Observable<IApplicationAction>): Rx.Observable<IFetchMovies> => 
+export const fetchMoviesAfterDebouncedUpdates$ = (action$: Rx.Observable<IAction.IApplicationAction>): Rx.Observable<IAction.IFetchMovies> => 
   action$
-    .filter(action => action.type === UPDATE_SEARCH_TERM)
-    .filter((action: IUpdateSearchTerm) => action.payload.length > 0)
+    .filter(action => action.type === IAction.UPDATE_SEARCH_TERM)
+    .filter((action: IAction.IUpdateSearchTerm) => action.payload.length > 0)
     .debounceTime(config.movies.inputDebounce)
     .mapTo(fetchMovies());
 
-export const processFetch = (action$: Rx.Observable<IApplicationAction>, store: Store<IStateRecord>): Rx.Observable<any> =>
+export const flagFetchingStart$ = (action$: Rx.Observable<IAction.IApplicationAction>): Rx.Observable<IAction.IIsFetching> =>
   action$
-    .filter(action => action.type === FETCH_MOVIES)
+    .filter(action => action.type === IAction.FETCH_MOVIES)
+    .mapTo(isFetching(true))
+
+export const processFetch$ = (action$: Rx.Observable<IAction.IApplicationAction>, store: Store<IStateRecord>): Rx.Observable<any> =>
+  action$
+    .filter(action => action.type === IAction.FETCH_MOVIES)
     .map(_ => {
       const state = store.getState();
       const page = state.getIn(['listings', 'currentPage']);
@@ -26,9 +31,9 @@ export const processFetch = (action$: Rx.Observable<IApplicationAction>, store: 
     })    
     .flatMap(url => Rx.Observable.from(fetch(url)))
     .flatMap(response => Rx.Observable.from(response.json()))
-    .mapTo((results: IMoviesResponse) => updateMovies(results.Search, parseInt(results.totalResults)))
+    .map((results: IMoviesResponse) => 
+      results.Response === "True" ? 
+        updateMovies(results.Search, parseInt(results.totalResults)) : 
+        updateMovies([], 0) 
+    )
 
-interface IMoviesResponse {
-  Search: IMovie[],
-  totalResults: string
-}
