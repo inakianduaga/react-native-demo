@@ -30,7 +30,7 @@ const Listings = (props: IListingProps) => {
 
       <SearchBox dispatch={props.dispatch} searchTerm={props.searchTerm} loading={props.fetching} />
 
-      <Pagination currentPage={ props.currentPage} onPagePress={ selectPage } results={props.totalResults} />
+      <Pagination currentPage={ props.currentPage} onPagePress={ selectPage } results={props.totalResults || 0} />
 
       <Text style={{ fontSize: 20, marginTop:'5%', marginBottom: '5%'}}>
         PAGINATION HERE (Total: { props.totalResults })
