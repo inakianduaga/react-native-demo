@@ -22,15 +22,17 @@ const paginationElements = (results: number, currentPage: number) => {
   return range.map(i => i+1);
 }
 
-const Pagination = ({ results, currentPage, onPagePress }: IProps) =>
-  <View>
-    {
-      paginationElements(results, currentPage).map((index: number) =>
-        <Text onPress={onPagePress(index)} style={{ color: index === currentPage ? 'red' : 'grey' }} key={index}>
-          {index}
-        </Text>
-      )
-    }
-  </View>
-
+const Pagination = ({ results, currentPage, onPagePress }: IProps) => 
+  results > 0 ? 
+    <View style={{ flexDirection: 'row', marginHorizontal: 50}}>
+      { 
+        paginationElements(results, currentPage).map((index: number) =>
+          <Text onPress={onPagePress(index)} style={{ color: index === currentPage ? 'red' : 'grey' }} key={index}>
+            {index}
+          </Text>
+        )
+      }
+    </View> :
+    <Text></Text>; 
+  
 export default Pagination;

@@ -27,11 +27,10 @@ export type IStateRecord = Record.Instance<IState>
 
 const initialStateRecord: IStateRecord = new (Record(initialState, "Redux Store record"))()
 
-const updateMovies = (state: IStateRecord, { payload }: IAction.IUpdateMovies) => 
-  state
-    .setIn(['movies'], List(payload.movies.map(movie => toMovieRecord(movie))))
-    .set("totalResults", payload.totalResults)
-    .set('fetching', false)
+const updateMovies = (state: IStateRecord, { payload }: IAction.IUpdateMovies) =>   state
+  .setIn(['movies'], List(payload.movies.map(movie => toMovieRecord(movie))))
+  .set("totalResults", payload.totalResults)
+  .set('fetching', false)
 
 const selectPage = (state: IStateRecord, action: IAction.ISelectPage) => state.set("currentPage", action.payload)
 
@@ -40,7 +39,7 @@ const updateSearchTerm = (state: IStateRecord, action: IAction.IUpdateSearchTerm
 const updateFetching = (state: IStateRecord, action: IAction.IIsFetching) => state.set('fetching', action.payload)
 
 const reducer = (state = initialStateRecord, action: IAction.IApplicationAction): IStateRecord => {
-  console.log('ACTION FIRED:', action.type)
+  console.log('ACTION FIRED:', action.type, action)
   switch (action.type) {
     case IAction.UPDATE_MOVIES:
       return updateMovies(state, action);
