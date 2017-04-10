@@ -1,6 +1,7 @@
 import { rootReducer, rootEpic } from '../reducers/index';
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
+const { composeWithDevTools } = require('redux-devtools-extension');
 
 declare const module: any;
 
@@ -9,7 +10,9 @@ const epicMiddleware = createEpicMiddleware(rootEpic);
 const configureStore = () => {
   const store = createStore(
     rootReducer,
-    applyMiddleware(epicMiddleware)
+    composeWithDevTools(
+      applyMiddleware(epicMiddleware)
+    )
   );
 
   // Enable HMR in redux
