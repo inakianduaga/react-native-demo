@@ -8,7 +8,8 @@
     "ios": "react-native run-ios",
     "build": "tsc",
     "prebuild": "rimraf build",
-    "prestart": "rimraf build"
+    "prestart": "rimraf build",
+    "upgrade-react-native": "react-native-git-upgrade"
   },
   "dependencies": {
     "@types/react-redux": "^4.4.38",
