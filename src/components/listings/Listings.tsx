@@ -5,6 +5,7 @@ const { Column: Col, Row } = require('react-native-flexbox-grid')
 
 import { IState as IListingsState} from '../../reducers/listings'
 import { navigateTo } from '../../actions/navigation'
+import { selectPage as selectPageAction } from '../../actions/listings'
 import SearchBox from './SearchBox'
 import Pagination from './Pagination'
 
@@ -15,10 +16,8 @@ interface IListingProps extends IListingsState {
 const Listings = (props: IListingProps) => {
 
   const navigateToIntro = () => props.dispatch(navigateTo('intro'))
-  const selectPage = (page: number) => {
-    console.log(page)
-  }
-
+  const selectPage = (page: number) => props.currentPage !== page && props.dispatch(selectPageAction(page))
+    
   return (
     <View style={{ 
       flex: 1,
@@ -31,22 +30,19 @@ const Listings = (props: IListingProps) => {
 
       <SearchBox dispatch={props.dispatch} searchTerm={props.searchTerm} loading={props.fetching} />
 
-      <Pagination currentPage={ props.currentPage} onPagePress={ selectPage } results={props.totalResults || 0} />
-
-      <Text style={{ fontSize: 20, marginTop:'5%', marginBottom: '5%'}}>
-        PAGINATION HERE (Total: { props.totalResults })
-      </Text>
+      <View style={{ marginTop: 10 }}>
+        <Pagination currentPage={ props.currentPage} onPress={ selectPage } results={props.totalResults} />
+      </View>
 
       {/* List */}
       { props.totalResults > 0 && 
-        <View style={{ maxHeight: '65%' }}>
+        <View style={{ height: '70%', marginTop: 20 }}>
           <ScrollView>
             <Row style={{ alignItems: 'center'}}>
             {
               props.movies.map(
-                movie => 
-
-                  <Col key={ movie.get('imdbID') } xs={6} sm={6} md={4} lg={2} style={{ maxHeight: 190, alignItems: 'center', marginVertical: 10}}>
+                (movie, index) => 
+                  <Col key={ `${movie.get('imdbID')}${index}` } xs={6} sm={6} md={4} lg={2} style={{ maxHeight: 190, alignItems: 'center', marginVertical: 10}}>
                     <Image 
                       resizeMode="contain"
                       style={{ height: 150, width: 150 }}
@@ -64,8 +60,9 @@ const Listings = (props: IListingProps) => {
       {/* No results found case */}
       { props.totalResults === 0 && 
         (props.searchTerm && props.searchTerm.length > 0) && 
-        !props.fetching &&
-        <Text style={{ marginVertical : 10, fontSize: 16, color: 'red'}}>No results...</Text>
+        !props.fetching ? 
+        <Text style={{ marginVertical : 10, fontSize: 16, color: 'red'}}>No results...</Text> : 
+        null
       }
 
       <View style={{ backgroundColor: '#222', marginTop: '15%', padding: '1%', width: "100%" }}>

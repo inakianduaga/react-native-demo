@@ -26,6 +26,11 @@ export const flagFetchingStart$ = (action$: Rx.Observable<IAction.IApplicationAc
     .filter(action => action.type === IAction.FETCH_MOVIES)
     .mapTo(isFetching(true))
 
+export const fetchMoviesWhenPageSelected$ = (action$: Rx.Observable<IAction.IApplicationAction>): Rx.Observable<IAction.IFetchMovies> =>
+  action$
+    .filter(action => action.type === IAction.SELECT_PAGE)
+    .mapTo(fetchMovies());
+
 export const processFetch$ = (action$: Rx.Observable<IAction.IApplicationAction>, store: Store<IStateRecord>): Rx.Observable<IAction.IUpdateMovies> =>
   action$
     .filter(action => action.type === IAction.FETCH_MOVIES)
