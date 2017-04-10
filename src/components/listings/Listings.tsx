@@ -5,6 +5,7 @@ import { Dispatch } from 'redux'
 import { IState as IListingsState} from '../../reducers/listings'
 import { navigateTo } from '../../actions/navigation'
 import SearchBox from './SearchBox'
+import Pagination from './Pagination'
 
 interface IListingProps extends IListingsState {
   dispatch: Dispatch<any>,
@@ -13,6 +14,9 @@ interface IListingProps extends IListingsState {
 const Listings = (props: IListingProps) => {
 
   const navigateToIntro = () => props.dispatch(navigateTo('intro'))
+  const selectPage = (page: number) => {
+    console.log(page)
+  }
 
   return (
     <View style={{ 
@@ -25,6 +29,8 @@ const Listings = (props: IListingProps) => {
     }}>
 
       <SearchBox dispatch={props.dispatch} searchTerm={props.searchTerm} loading={props.fetching} />
+
+      <Pagination currentPage={ props.currentPage} onPagePress={ selectPage } results={props.totalResults} />
 
       <Text style={{ fontSize: 20, marginTop:'5%', marginBottom: '5%'}}>
         PAGINATION HERE (Total: { props.totalResults })
