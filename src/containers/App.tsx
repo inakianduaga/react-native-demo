@@ -35,7 +35,8 @@ class Main extends Component<IMainProps, {}> {
 export default connect(
   // (state: IStateRecord) => state.toJS(), // Non-performant, better manually`
   (state: IRootState) => ({ 
-    movies: state.getIn(['listings', 'movies']), 
+    movies: state.getIn(['listings', 'movies']),
+    totalResults: state.getIn(['listings', 'totalResults']), 
     currentPage: state.getIn(['listings', 'currentPage']), 
     fetching: state.getIn(['listings', 'fetching']), 
     searchTerm: state.getIn(['listings', 'searchTerm']),

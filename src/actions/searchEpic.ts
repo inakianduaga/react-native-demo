@@ -15,12 +15,18 @@ export const fetchMoviesAfterDebouncedUpdates$ = (action$: Rx.Observable<IAction
     .debounceTime(config.movies.inputDebounce)
     .mapTo(fetchMovies());
 
+export const clearMoviesListWhenSearchTermIsEmpty$ = (action$: Rx.Observable<IAction.IApplicationAction>): Rx.Observable<IAction.IUpdateMovies> =>
+  action$
+    .filter(action => action.type === IAction.UPDATE_SEARCH_TERM)
+    .filter((action: IAction.IUpdateSearchTerm) => action.payload.length === 0)
+    .mapTo(updateMovies([], 0))
+
 export const flagFetchingStart$ = (action$: Rx.Observable<IAction.IApplicationAction>): Rx.Observable<IAction.IIsFetching> =>
   action$
     .filter(action => action.type === IAction.FETCH_MOVIES)
     .mapTo(isFetching(true))
 
-export const processFetch$ = (action$: Rx.Observable<IAction.IApplicationAction>, store: Store<IStateRecord>): Rx.Observable<any> =>
+export const processFetch$ = (action$: Rx.Observable<IAction.IApplicationAction>, store: Store<IStateRecord>): Rx.Observable<IAction.IUpdateMovies> =>
   action$
     .filter(action => action.type === IAction.FETCH_MOVIES)
     .map(_ => {

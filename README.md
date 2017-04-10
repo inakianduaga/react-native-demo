@@ -44,6 +44,13 @@ npm start android
 
 - Via chrome on http://localhost:8081/debugger-ui
 
+## Upgrading React Native
+
+To upgrade `react-native` to the latest version, use the package `react-native-git-upgrade`
+
+1. Install globally (locally doesn't work): `npm install -g react-native-git-upgrade`
+2. run `react-native-git-upgrade` on the root app folder
+
 ## Acknowledgements:
 
 Based on [mrpatiwi/ReactNativeTS](https://github.com/mrpatiwi/ReactNativeTS) as starting point.
