@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Button, ScrollView, Image } from "react-native";
 import { Dispatch } from 'redux'
+const { Column: Col, Row } = require('react-native-flexbox-grid')
 
 import { IState as IListingsState} from '../../reducers/listings'
 import { navigateTo } from '../../actions/navigation'
@@ -38,26 +39,24 @@ const Listings = (props: IListingProps) => {
 
       {/* List */}
       { props.totalResults > 0 && 
-        <View style={{ maxHeight: '60%' }}>
-          <ScrollView style={{ flex: 1 }}>
-            <View style={{ justifyContent: 'center',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        flex: 1,}} >
+        <View style={{ maxHeight: '65%' }}>
+          <ScrollView>
+            <Row>
             {
               props.movies.map(
                 movie => 
-                  <View key={ movie.get('imdbID') } style={{ flexDirection: 'column', alignItems: 'center', width: '50%', maxHeight: 190, marginVertical: 10}}>
+
+                  <Col key={ movie.get('imdbID') } xs={6} sm={4} md={4} lg={2} style={{ maxHeight: 190, marginVertical: 10}}>
                     <Image 
                       resizeMode="contain"
-                      style={{ height: 150, width: 150 }}
+                      style={{ height: 150, width: 130 }}
                       source={{ uri: movie.get('poster').length > 0 && movie.get('poster') !== 'N/A.png' ? movie.get('poster'): 'http://placehold.it/350x350'}}
                     />
                     <Text ellipsizeMode="tail" numberOfLines={1} style={{ textAlign:'center', color: '#008cba', fontSize: 16, marginTop: 3, maxWidth: 250 }}> { movie.get('title') }</Text>
-                  </View>
+                  </Col>
               )
             }
-            </View>
+            </Row>
           </ScrollView>
         </View>         
       }
