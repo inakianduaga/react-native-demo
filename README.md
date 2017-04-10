@@ -42,7 +42,11 @@ npm start android
 
 ## Debugging:
 
-- Via chrome on http://localhost:8081/debugger-ui
+- **React Native Debugger** (recommended): You can have access to all redux devtools & inspection by running the native [react-native-debugger](https://github.com/jhen0409/react-native-debugger) application
+  - Install package for your OS of choice
+  - Launch app and enable `remote JS debugger` in the React Native options
+  - Launch debugger
+- **Via chrome**: on http://localhost:8081/debugger-ui
 
 ## Upgrading React Native
 
