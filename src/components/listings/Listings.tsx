@@ -38,22 +38,26 @@ const Listings = (props: IListingProps) => {
 
       {/* List */}
       { props.totalResults > 0 && 
-        <View style={{ maxHeight: '50%'}}>
-          <ScrollView>
+        <View style={{ maxHeight: '60%' }}>
+          <ScrollView style={{ flex: 1 }}>
+            <View style={{ justifyContent: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        flex: 1,}} >
             {
               props.movies.map(
                 movie => 
-
-                  <View key={ movie.get('imdbID') } style={{ flexDirection: 'column', alignItems: 'center', marginVertical: 10}}>
+                  <View key={ movie.get('imdbID') } style={{ flexDirection: 'column', alignItems: 'center', width: '50%', maxHeight: 190, marginVertical: 10}}>
                     <Image 
                       resizeMode="contain"
                       style={{ height: 150, width: 150 }}
                       source={{ uri: movie.get('poster').length > 0 && movie.get('poster') !== 'N/A.png' ? movie.get('poster'): 'http://placehold.it/350x350'}}
                     />
-                    <Text style={{ color: '#008cba', fontSize: 16, marginTop: 3, maxWidth: 250 }}> { movie.get('title') }</Text>
+                    <Text ellipsizeMode="tail" numberOfLines={1} style={{ textAlign:'center', color: '#008cba', fontSize: 16, marginTop: 3, maxWidth: 250 }}> { movie.get('title') }</Text>
                   </View>
               )
             }
+            </View>
           </ScrollView>
         </View>         
       }
@@ -61,6 +65,7 @@ const Listings = (props: IListingProps) => {
       {/* No results found case */}
       { props.totalResults === 0 && 
         (props.searchTerm && props.searchTerm.length > 0) && 
+        !props.fetching &&
         <Text style={{ marginVertical : 10, fontSize: 16, color: 'red'}}>No results...</Text>
       }
 
