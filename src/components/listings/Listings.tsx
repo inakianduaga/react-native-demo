@@ -41,18 +41,18 @@ const Listings = (props: IListingProps) => {
       { props.totalResults > 0 && 
         <View style={{ maxHeight: '65%' }}>
           <ScrollView>
-            <Row>
+            <Row style={{ alignItems: 'center'}}>
             {
               props.movies.map(
                 movie => 
 
-                  <Col key={ movie.get('imdbID') } xs={6} sm={4} md={4} lg={2} style={{ maxHeight: 190, marginVertical: 10}}>
+                  <Col key={ movie.get('imdbID') } xs={6} sm={6} md={4} lg={2} style={{ maxHeight: 190, alignItems: 'center', marginVertical: 10}}>
                     <Image 
                       resizeMode="contain"
-                      style={{ height: 150, width: 130 }}
-                      source={{ uri: movie.get('poster').length > 0 && movie.get('poster') !== 'N/A.png' ? movie.get('poster'): 'http://placehold.it/350x350'}}
+                      style={{ height: 150, width: 150 }}
+                      source={{ uri: movie.get('poster').length > 0 && movie.get('poster') !== 'N/A' ? movie.get('poster'): 'http://placehold.it/300x350'}}
                     />
-                    <Text ellipsizeMode="tail" numberOfLines={1} style={{ textAlign:'center', color: '#008cba', fontSize: 16, marginTop: 3, maxWidth: 250 }}> { movie.get('title') }</Text>
+                    <Text ellipsizeMode="tail" numberOfLines={1} style={{ textAlign:'center', color: '#008cba', fontSize: 16, marginTop: 3, maxWidth: 150 }}> { movie.get('title') }</Text>
                   </Col>
               )
             }
