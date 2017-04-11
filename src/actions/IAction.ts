@@ -7,6 +7,7 @@ export const UPDATE_MOVIES = 'UPDATE_MOVIES'
 export const SELECT_MOVIE = 'SELECT_MOVIE'
 export const SELECT_PAGE = 'SELECT_PAGE'
 export const NAVIGATE_TO = 'NAVIGATE_TO'
+export const NAVIGATE_TO_DETAILS = 'NAVIGATE_TO_DETAILS'
 export const UPDATE_SEARCH_TERM = 'UPDATE_SEARCH_TERM'
 export const IS_FETCHING = 'IS_FETCHING'
 export const FETCH_DETAILS = 'FETCH_DETAILS'
@@ -51,6 +52,11 @@ export interface INavigateTo extends IStandardAction {
   payload: INavigationState
 }
 
+export interface INavigateToDetails extends IStandardAction {
+  type: 'NAVIGATE_TO_DETAILS',
+  payload: string
+}
+
 export interface IUpdateSearchTerm extends IStandardAction {
   type: 'UPDATE_SEARCH_TERM',
   payload: string
@@ -84,3 +90,4 @@ export type IApplicationAction =
   | IIsFetching
   | IFetchDetails
   | IUpdateDetails
+  | INavigateToDetails

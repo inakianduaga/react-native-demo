@@ -18,6 +18,9 @@ import {
   clearMoviesListWhenSearchTermIsEmpty$, 
   fetchMoviesWhenPageSelected$,
   resetPaginationWhenSearchTermChanges$,
+  fetchDetailsWhenNavigatingToDetailsPage$,
+  updateDetailsAfterFetching$,
+  updateNavigationWhenGoingToDetails$,
  } from '../actions/searchEpic'
 
 // Redux-immutable override type declaration
@@ -32,7 +35,10 @@ export const rootEpic = combineEpics(
   flagFetchingStart$,
   clearMoviesListWhenSearchTermIsEmpty$,
   fetchMoviesWhenPageSelected$,
-  resetPaginationWhenSearchTermChanges$
+  resetPaginationWhenSearchTermChanges$,
+  fetchDetailsWhenNavigatingToDetailsPage$,
+  updateDetailsAfterFetching$,
+  updateNavigationWhenGoingToDetails$,
 );
 
 type IState = {
