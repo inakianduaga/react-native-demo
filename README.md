@@ -9,7 +9,13 @@
 - [x] Hot reloading working
 - [x] ImmutableJS integration (redux state as Immutable Record)
 - [x] Strong TypeScript compiler checks 
-- [ ] Redux observable for action observables
+- [x] Redux observable for action observables
+- [x] Redux remote devtools integration
+- [ ] Codepush integration
+
+## Demo:
+
+![react-native-demo](https://cloud.githubusercontent.com/assets/4490289/24935282/678432b8-1f21-11e7-83a5-f4cf98d5bbfd.gif)
 
 ## Getting Started
 
