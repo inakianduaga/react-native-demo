@@ -9,11 +9,11 @@ import { selectPage as selectPageAction } from '../../actions/listings'
 import SearchBox from './SearchBox'
 import Pagination from './Pagination'
 
-interface IListingProps extends IListingsState {
+interface IProps extends IListingsState {
   dispatch: Dispatch<any>,
 }
 
-const Listings = (props: IListingProps) => {
+const Listings = (props: IProps) => {
 
   const navigateToIntro = () => props.dispatch(navigateTo('intro'))
   const selectPage = (page: number) => props.currentPage !== page && props.dispatch(selectPageAction(page))

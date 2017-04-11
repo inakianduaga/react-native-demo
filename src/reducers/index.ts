@@ -4,11 +4,21 @@ import { combineReducers } from 'redux-immutable'
 import { combineEpics } from 'redux-observable';
 import { Record, Collection } from 'immutable'
 
-import { IStateRecord as IListingsState } from './listings'
 import listings from './listings';
-import { IStateRecord as INavigationState } from './navigation'
 import navigation from './navigation';
-import { fetchMoviesAfterDebouncedUpdates$, processFetch$, flagFetchingStart$, clearMoviesListWhenSearchTermIsEmpty$, fetchMoviesWhenPageSelected$ } from '../actions/searchEpic'
+import details from './details';
+import { IStateRecord as INavigationState } from './navigation'
+import { IStateRecord as IListingsState } from './listings'
+import { IStateRecord as IDetailsState } from './details'
+
+import { 
+  fetchMoviesAfterDebouncedUpdates$, 
+  processFetch$, 
+  flagFetchingStart$, 
+  clearMoviesListWhenSearchTermIsEmpty$, 
+  fetchMoviesWhenPageSelected$,
+  resetPaginationWhenSearchTermChanges$,
+ } from '../actions/searchEpic'
 
 // Redux-immutable override type declaration
 // declare function combineReducers<S>(reducers: Redux.ReducersMapObject, getDefaultState?: () => Record.Instance<any> | Collection<string, any> ): Redux.Reducer<S>;
@@ -21,12 +31,14 @@ export const rootEpic = combineEpics(
   processFetch$,
   flagFetchingStart$,
   clearMoviesListWhenSearchTermIsEmpty$,
-  fetchMoviesWhenPageSelected$
+  fetchMoviesWhenPageSelected$,
+  resetPaginationWhenSearchTermChanges$
 );
 
 type IState = {
   listings: IListingsState,
-  navigation: INavigationState
+  navigation: INavigationState,
+  details: IDetailsState,
 }
 
 // top level app state
@@ -35,13 +47,15 @@ export type IStateRecord = Record.Instance<IState>
 // Use a record to contain the global app state
 const StateRecord = Record({
 	listings: undefined,
-  navigation: undefined
+  navigation: undefined,
+  details: undefined
 });
 
 export const rootReducer = combineReducers({
   // every modules reducer should be define here
   listings,
-  navigation
+  navigation,
+  details
 }, StateRecord);
 
 export default rootReducer;

@@ -16,6 +16,11 @@ export const fetchMovies = (): IAction.IFetchMovies => ({
   payload: null
 });
 
+export const resetPagination = (): IAction.IResetPagination => ({
+  type: IAction.RESET_PAGINATION,
+  payload: null
+});
+
 export const updateMovies = (movies: IApiMovieResponse[], totalResults: number): IAction.IUpdateMovies => ({
   type: IAction.UPDATE_MOVIES,
   payload: {

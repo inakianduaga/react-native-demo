@@ -3,7 +3,7 @@ import 'rxjs' // Monkey patches the Observable prototype w/ entire Rx library
 import * as Rx from 'rxjs'
 import { Store } from 'redux'
 import { IStateRecord } from '../reducers/index'
-import { fetchMovies, updateMovies, isFetching } from './listings'
+import { fetchMovies, updateMovies, isFetching, resetPagination } from './listings'
 import * as IAction from './IAction'
 import config from '../config/config'
 import { IMoviesResponse } from '../api/movies'
@@ -14,6 +14,11 @@ export const fetchMoviesAfterDebouncedUpdates$ = (action$: Rx.Observable<IAction
     .filter((action: IAction.IUpdateSearchTerm) => action.payload.length > 0)
     .debounceTime(config.movies.inputDebounce)
     .mapTo(fetchMovies());
+
+export const resetPaginationWhenSearchTermChanges$ = (action$: Rx.Observable<IAction.IApplicationAction>): Rx.Observable<IAction.IResetPagination> => 
+  action$
+    .filter(action => action.type === IAction.UPDATE_SEARCH_TERM)
+    .mapTo(resetPagination())
 
 export const clearMoviesListWhenSearchTermIsEmpty$ = (action$: Rx.Observable<IAction.IApplicationAction>): Rx.Observable<IAction.IUpdateMovies> =>
   action$
