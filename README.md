@@ -1,6 +1,6 @@
-# React Native Typescript Demo [WIP]
+# React Native Typescript Boilerplate & Demo
 
-> Small [React Native](https://facebook.github.io/react-native/) project that integrates [Typescript](https://www.typescriptlang.org/).
+> Small [React Native](https://facebook.github.io/react-native/) project that integrates [Typescript](https://www.typescriptlang.org/), [Redux](http://redux.js.org/) & [ImmutableJS](https://facebook.github.io/immutable-js/).
 
 ## Features
 
@@ -13,7 +13,7 @@
 - [x] Redux remote devtools integration
 - [ ] Codepush integration
 
-## Demo:
+## Quick Demo:
 
 ![react-native-demo](https://cloud.githubusercontent.com/assets/4490289/24935282/678432b8-1f21-11e7-83a5-f4cf98d5bbfd.gif)
 
@@ -49,9 +49,9 @@ npm start android
 ## Debugging:
 
 - **React Native Debugger** (recommended): You can have access to all redux devtools & inspection by running the native [react-native-debugger](https://github.com/jhen0409/react-native-debugger) application
-  - Install package for your OS of choice
-  - Launch app and enable `remote JS debugger` in the React Native options
-  - Launch debugger
+  1. Install package for your OS of choice
+  2. Launch app and enable `remote JS debugger` in the React Native options
+  3. Launch debugger
 - **Via chrome**: on http://localhost:8081/debugger-ui
 
 ## Upgrading React Native
