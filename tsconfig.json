@@ -35,6 +35,7 @@
     ],
     "exclude": [
         "__tests__",
+        "coverage",
         "index.android.js",
         "index.ios.js",
         "build",
