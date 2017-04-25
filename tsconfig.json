@@ -4,7 +4,7 @@
         "module": "es2015",
         "jsx": "react",
         "outDir": "build",
-        "rootDir": "src",
+        "rootDir": "./src",
         "allowSyntheticDefaultImports": true,
         "noImplicitAny": true,
         "noImplicitThis": true,
@@ -30,9 +30,12 @@
     },
     "filesGlob": [
         "src/**/*.ts",
-        "src/**/*.tsx"
+        "src/**/*.tsx",
+        "__tests__/**/*.ts"
     ],
     "exclude": [
+        "__tests__",
+        "coverage",
         "index.android.js",
         "index.ios.js",
         "build",

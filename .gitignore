@@ -1,6 +1,6 @@
 # Typescript
 build
-typings
+coverage
 .vscode
 
 # OSX

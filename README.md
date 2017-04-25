@@ -1,14 +1,14 @@
 # React Native Typescript Boilerplate & Demo
 
-> Small [React Native](https://facebook.github.io/react-native/) project that integrates [Typescript](https://www.typescriptlang.org/), [Redux](http://redux.js.org/) & [ImmutableJS](https://facebook.github.io/immutable-js/).
+> Small [React Native](https://facebook.github.io/react-native/) project that integrates [Typescript](https://www.typescriptlang.org/), [Redux](http://redux.js.org/) & [ImmutableJS](https://facebook.github.io/immutable-js/), [Jest](https://facebook.github.io/jest/)
 
 ## Features
 
-- [x] Typescript integration
+- [x] Typescript integration, w/ strong compiler checks
 - [x] Redux integration 
 - [x] Hot reloading working
 - [x] ImmutableJS integration (redux state as Immutable Record)
-- [x] Strong TypeScript compiler checks 
+- [x] Jest (preconfigured for typescript) 
 - [x] Redux observable for action observables
 - [x] Redux remote devtools integration
 - [ ] Codepush integration
