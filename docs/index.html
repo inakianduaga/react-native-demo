@@ -267,7 +267,7 @@ class:
 
 # React Native
 
-<blockquote class="margin-h-0"> React "engine" + tools for native iOS/Android interop.</blockquote>
+<blockquote class="margin-h-0"> React "engine" + tools/classes for native iOS/Android interop.</blockquote>
 
 --
 
@@ -280,17 +280,291 @@ class:
 
 - **NO full RN apps**: Every RN app is a hybrid app (just differ by the extend of "hybridness")
 
---
+---
+
+# How does a RN project look like?
 
 .align-center[
-<image src="./images/folder-structure.png" alt="Folder Structure" style="max-height: 173px; margin: 1em auto 0;"/>
+<image src="./images/folder-structure.png" alt="Folder Structure" style="max-height: 173px; margin: 1.5em auto 1.5em;"/>
 ]
+
+- `./android` Contains native Android Java application
+- `./ios` Contains native Objective C / Swift iOS app
+- `./src` Contains React javascript application
+- Rest is RN tooling/packaging code
+
+--
+
+What about existing iOS/Android apps that live in separate repositories? 
+--
+ looks fundamentally possible, needs to be investigated further.
+
+??? 
+
+After going through the folder bullets browse repository and show how the RN native apps actually bind to the JS server
+
+---
+
+# Developing in React Native
+
+Launch dev environment 
+
+-- 
+
+- Typescript compiler in watch mode
+- RN compiler server on port `8081`
+- Native IOS app running on XCode simulator
+- Native Android app running on Android simulator
+- Jest running in watch mode for running tests
 
 ???
 
-Browse over the codebase and show android / ios project structure
+- Mention prerequisites (npm install, xcode installed, android sdk installed)
 
 ---
+
+# Let's change something
+
+Go over:
+
+- Platform-specific logic (intro screen)
+- Hot reloading
+- Inspector / Network watcher 
+- Test watcher
+
+-- 
+
+We should now have a taste of what development in RN looks like, but we don't know anything about the app itself
+
+???
+
+Mention at the end "Lets step back and think of how we would like to do frontend in 2017"
+
+---
+
+# A kick-ass frontend architecture
+
+--
+
+<p style="margin-bottom: 1.5em">
+What do we expect from a modern frontend app (irregardless of platform)?
+</p>
+
+--
+
+- One-way data binding 
+
+--
+
+- Reactive (as in reactive programming, event driven)
+
+--
+
+- Dumb Views (stateless, views are functions)
+
+--
+
+- Proper state management (easily find the state of the application at any time & track what/how it changes)
+
+--
+
+- Small components + composition
+
+--
+
+- Isolate side-effects (i.e http calls, logging, analytics) as much as possible
+
+--
+
+- Immutability (prevent component cross-talk leak, fast UI repainting)
+
+--
+
+- Language of choice should support types, quick dev feedback loop
+
+--
+
+<p style="margin-top: 1.5em">
+Can React & Javascript take us there?
+</p>
+
+---
+
+# React ecosystem in 2017
+
+### React
+
+- one way data binding for free
+- supports dumb views
+- highly encourages small components and composition (very easy to do so)
+- reactivity built-in for View layer
+
+---
+
+# React ecosystem in 2017
+
+### React
+
+### TypeScript
+
+- Superset of JavaScript
+- Instantly turns JS to the level of "enterprise"-like languages (arguably)
+- It's fast (due to underlying JS). Test run fasts, compilation/transpilation runs fast, builds are fast.
+
+---
+
+# React ecosystem in 2017
+
+### React
+
+### TypeScript 
+
+### ImmutableJS 
+
+TypeScript doesn't have immutability built-in, we use a wrapper library
+
+---
+
+# React ecosystem in 2017
+
+### React
+
+### TypeScript
+
+### ImmutableJS 
+
+### Redux
+
+State-management library
+
+- Single state for our entire application, sliceable per components.
+- Reactivity built-in for state layer
+- Awesome tooling
+
+---
+
+# Redux 1 min intro
+
+.align-center[
+<image src="./images/redux-flow.png" alt="Redux flow" style="max-height: 200px; margin-top: 1.5em; margin-bottom: 1.5em" />
+]
+
+--
+
+1. State drives UI 
+
+--
+
+2. Actions are generated through UI user interaction (i.e filter selection)
+
+--
+
+3. Reducers process Actions and yield a NEW (immutable) state
+
+--
+
+4. React takes us back to 1 automatically
+
+Impure layer comes as redux middleware (hooks to actions and store changes)
+
+???
+
+Show tooling live to indicate examples of how redux helps us visualize & track state
+
+
+---
+
+# Checkpoint
+
+By now you are hopefully convinced that 
+
+- React Native tooling provides a nice developer experience
+- We can build a solid frontend architecture around it
+- React apps should be "boring", the Redux pattern makes everything that's not logic specific boilerplate / standarized.
+- Coding in TypeScript doesn't suck
+
+This seems to be enough for a single team that wants to contribute to the native apps. 
+But what about multiple RN components within the same application?
+
+---
+
+# Multiple RN components (i.e "jigsaw")
+
+- Show communication between the RN components.
+- Show how the application is changing from one to the next and booting
+
+---
+
+# Web-like release agility
+
+TODO: Use this to test the demo
+
+http://samwize.com/2017/01/19/guide-to-integrating-codepush-for-ios-react-native-project/
+
+- Bypass iOS/Play Store using Microsoft's [CodePush](https://microsoft.github.io/code-push/index.html)
+- Decoupled releases between teams (no need for big-bang releases for changes within RN side)
+- Should be ok [legally](https://microsoft.github.io/code-push/faq/index.html#1-does-the-apple-app-store-allow-developers-to-perform-these-types-of-updates) for reasonable changes
+- Should work for [hybrid apps](https://github.com/Microsoft/react-native-code-push/issues/663#issuecomment-276346413) as well
+- [Might not currently work](http://stackoverflow.com/questions/38529114/how-to-use-multiple-reactnativehosts-for-codepush-within-one-application#answer-38541855) for independent codepushes of multiple RN modules within an app (but fix doable)  
+
+---
+
+# React Native Advantages
+
+### Developer side
+
+- The React architecture is hard to beat, excellent community support & documentation around it.
+- TypeScript (& JS) acquire new features all the time that can be used through transpilation (no more stuck on whatever Java features Google supports)
+- Web-experience team can build RN component library, equivalent to current web one.
+- As a CXP developer I can use what I know and produce results much faster than having to learn iOS/Android from scratch
+
+
+### Product side
+
+- Mobile team keeps maintaining the overall "backend" of the app, different pages can be transitioned independently.
+- Faster time to market for "mobile-first" transition
+- Teams can update application independently and anytime*
+- Easier to hire JS/React developers than mobile ones (specially Scala+JS)
+- Mobile developers can transition into "regular" developers through time.
+
+---
+
+# React Native Disadvantages
+
+- Existing views that we want to move to RN will have to be fully ported from scratch (maybe an advantage :) ) 
+- Unforeseen technical difficulties
+- ...
+
+---
+
+# I have a dream...
+
+- Build and use a "state-of-the-art" architecture/programming patterns across Web & Mobile
+- All CXP experience teams benefit from that and take it as a solid starting point
+- Freedom within each team allows for changes/evolution -> Feedback comes back to other teams, architecture is updated
+- High knowledge sharing within & across teams
+
+---
+
+# Next steps
+
+- Decide on whether the React Native approach is worth pursuing
+- Implement a POC inside the current iOS / Android apps to test in the context of a "heavy" native application
+- Analyze performance, package size and technicalities that could be deal-breakers. 
+
+---
+
+class: center, middle
+
+# The end!
+
+### Questions??
+
+---
+
+# References
+
+- [Redux intro](https://scotch.io/bar-talk/getting-started-with-redux-an-intro)
 
 
 
