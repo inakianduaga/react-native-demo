@@ -465,12 +465,23 @@ State-management library
 
 4. React takes us back to 1 automatically
 
-Impure layer comes as redux middleware (hooks to actions and store changes)
+---
+
+# Redux middleware
+> Isolated side-effects
+
+- Redux middleware hooks to the actions/state changes and allows you to do side-effects, redispatch other events, etc.
+
+- Logging is a middleware
+- Persistance layer is a middleware
+- Analytics tracking is a middleware
+- Http fetchs are middleware
+- Redux devtools are middleware
+- ...
 
 ???
 
-Show tooling live to indicate examples of how redux helps us visualize & track state
-
+Show demo of actions in the dev tool
 
 ---
 
@@ -569,7 +580,7 @@ class: center, middle
 
 
     </textarea>
-  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.js">
 
   </script>
   <script>
