@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>React Native for Hybrid Mobile Apps</title>
+  <meta charset="utf-8">
+
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+    body {
+      font-family: 'Droid Serif';
+    }
+    
+    h1,
+    h2,
+    h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: 400;
+      margin-bottom: 0.1em;
+    }
+    
+    li {
+      margin-top: 0.3em;
+      margin-bottom: 0.3em;
+    }
+    .remark-slide-content h1 {
+      font-size: 3em;
+    }
+    
+    .remark-slide-content h2 {
+      font-size: 2em;
+    }
+    
+    .remark-slide-content h3 {
+      font-size: 1.6em;
+    }
+    
+    .footnote {
+      position: absolute;
+      bottom: 3em;
+      left: 0;
+      right: 0;
+    }
+    
+    blockquote {
+      padding: 0 1em;
+      color: #6a737d;
+      border-left: 0.25em solid #dfe2e5;
+      display: inline-block;
+      margin-bottom: 0;
+    }
+
+    blockquote p { 
+      margin: 0;
+    }
+
+    .inline-block {
+      display: inline-block;
+    }
+
+    .align-left {
+      text-align: left;
+    }
+    .align-right {
+      text-align: right;
+    }
+    .align-center {
+      text-align: center;
+    }
+
+    .small {
+      font-size: 0.8em;
+    }
+
+    .faded {
+      opacity: 0.7;
+    }
+
+    .width-50 {
+      max-width: 50%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .width-70 {
+      max-width: 70%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .margin-h-0 {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    li p {
+      line-height: 1.25em;
+    }
+    
+    .red {
+      color: #fa0000;
+    }
+    
+    .large {
+      font-size: 2em;
+    }
+    
+    a,
+    a>code {
+      color: rgb(249, 38, 114);
+      text-decoration: none;
+    }
+    
+    code {
+      background: #e7e8e2;
+      border-radius: 5px;
+    }
+    
+    .remark-code,
+    .remark-inline-code {
+      font-family: 'Ubuntu Mono';
+    }
+    
+    .pull-left {
+      float: left;
+      width: 47%;
+    }
+    
+    .pull-right {
+      float: right;
+      width: 47%;
+    }
+    
+    .pull-right~p {
+      clear: both;
+    }
+    
+    #slideshow .slide .content code {
+      font-size: 0.8em;
+    }
+    
+    #slideshow .slide .content pre code {
+      font-size: 0.9em;
+      padding: 15px;
+    }
+    
+    .inverse {
+      background: #272822;
+      color: #777872;
+      text-shadow: 0 0 20px #333;
+    }
+    
+    .inverse h1,
+    .inverse h2 {
+      color: #f3f3f3;
+      line-height: 0.8em;
+    }
+    /* Slide-specific styling */
+    
+    #slide-inverse .footnote {
+      bottom: 12px;
+      left: 20px;
+    }
+    
+    #slide-how .slides {
+      font-size: 0.9em;
+      position: absolute;
+      top: 151px;
+      right: 140px;
+    }
+    
+    #slide-how .slides h3 {
+      margin-top: 0.2em;
+    }
+    
+    #slide-how .slides .first,
+    #slide-how .slides .second {
+      padding: 1px 20px;
+      height: 90px;
+      width: 120px;
+      -moz-box-shadow: 0 0 10px #777;
+      -webkit-box-shadow: 0 0 10px #777;
+      box-shadow: 0 0 10px #777;
+    }
+    
+    #slide-how .slides .first {
+      background: #fff;
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      z-index: 1;
+    }
+    
+    #slide-how .slides .second {
+      position: relative;
+      background: #fff;
+      z-index: 0;
+    }
+    /* Two-column layout */
+    
+    .left-column {
+      color: #777;
+      width: 20%;
+      height: 92%;
+      float: left;
+    }
+    
+    .left-column h2:last-of-type,
+    .left-column h3:last-child {
+      color: #000;
+    }
+    
+    .right-column {
+      width: 75%;
+      float: right;
+      padding-top: 1em;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+  </script>
+  <textarea id="source">
+
+class: center, middle
+
+# React Native for Hybrid Mobile Apps
+
+.align-left[
+> Exploring the React Native approach to hybrid mobile apps
+] 
+
+.footnote.small.faded.align-center[
+[Project](https://github.com/inakianduaga/react-native-demo) - Inaki Anduaga - Lead Developer @ autoscout24.com
+]
+
+
+---
+
+class: center, middle
+
+# We want to learn:
+
+.inline-block.align-left[
+- What is React Native
+- How does the hybrid app integration approach work
+- Can it be "a jigsaw" for mobile?
+]
+
+--
+
+# How?
+.inline-block.align-left[
+- Go over at how a modern React workflow looks like in 2017
+- Take a look at a small [React Native POC](https://github.com/inakianduaga/react-native-demo)
+]
+
+---
+
+class: 
+
+# React Native
+
+<blockquote class="margin-h-0"> React "engine" + tools/classes for native iOS/Android interop.</blockquote>
+
+--
+
+## Misconceptions!
+
+
+- **NOT a framework**: Needs additional libraries to build full application
+
+--
+
+- **NO full RN apps**: Every RN app is a hybrid app (just differ by the extend of "hybridness")
+
+---
+
+# How does a RN project look like?
+
+.align-center[
+<image src="./images/folder-structure.png" alt="Folder Structure" style="max-height: 173px; margin: 1.5em auto 1.5em;"/>
+]
+
+- `./android` Contains native Android Java application
+- `./ios` Contains native Objective C / Swift iOS app
+- `./src` Contains React javascript application
+- Rest is RN tooling/packaging code
+
+--
+
+What about existing iOS/Android apps that live in separate repositories? 
+--
+ looks fundamentally possible, needs to be investigated further.
+
+??? 
+
+After going through the folder bullets browse repository and show how the RN native apps actually bind to the JS server
+
+---
+
+# Developing in React Native
+
+Launch dev environment 
+
+-- 
+
+- Typescript compiler in watch mode
+- RN compiler server on port `8081`
+- Native IOS app running on XCode simulator
+- Native Android app running on Android simulator
+- Jest running in watch mode for running tests
+
+???
+
+- Mention prerequisites (npm install, xcode installed, android sdk installed)
+
+---
+
+# Let's change something
+
+Go over:
+
+- Platform-specific logic (intro screen)
+- Hot reloading
+- Inspector / Network watcher 
+- Test watcher
+
+-- 
+
+We should now have a taste of what development in RN looks like, but we don't know anything about the app itself
+
+???
+
+Mention at the end "Lets step back and think of how we would like to do frontend in 2017"
+
+---
+
+# A kick-ass frontend architecture
+
+--
+
+<p style="margin-bottom: 1.5em">
+What do we expect from a modern frontend app (irregardless of platform)?
+</p>
+
+--
+
+- One-way data binding 
+
+--
+
+- Reactive (as in reactive programming, event driven)
+
+--
+
+- Dumb Views (stateless, views are functions)
+
+--
+
+- Proper state management (easily find the state of the application at any time & track what/how it changes)
+
+--
+
+- Small components + composition
+
+--
+
+- Isolate side-effects (i.e http calls, logging, analytics) as much as possible
+
+--
+
+- Immutability (prevent component cross-talk leak, fast UI repainting)
+
+--
+
+- Language of choice should support types, quick dev feedback loop
+
+--
+
+<p style="margin-top: 1.5em">
+Can React & Javascript take us there?
+</p>
+
+---
+
+# React ecosystem in 2017
+
+### React
+
+- one way data binding for free
+- supports dumb views
+- highly encourages small components and composition (very easy to do so)
+- reactivity built-in for View layer
+
+---
+
+# React ecosystem in 2017
+
+### React
+
+### TypeScript
+
+- Superset of JavaScript
+- Instantly turns JS to the level of "enterprise"-like languages (arguably)
+- It's fast (due to underlying JS). Test run fasts, compilation/transpilation runs fast, builds are fast.
+
+---
+
+# React ecosystem in 2017
+
+### React
+
+### TypeScript 
+
+### ImmutableJS 
+
+TypeScript doesn't have immutability built-in, we use a wrapper library
+
+---
+
+# React ecosystem in 2017
+
+### React
+
+### TypeScript
+
+### ImmutableJS 
+
+### Redux
+
+State-management library
+
+- Single state for our entire application, sliceable per components.
+- Reactivity built-in for state layer
+- Awesome tooling
+
+---
+
+# Redux 1 min intro
+
+.align-center[
+<image src="./images/redux-flow.png" alt="Redux flow" style="max-height: 200px; margin-top: 1.5em; margin-bottom: 1.5em" />
+]
+
+--
+
+1. State drives UI 
+
+--
+
+2. Actions are generated through UI user interaction (i.e filter selection)
+
+--
+
+3. Reducers process Actions and yield a NEW (immutable) state
+
+--
+
+4. React takes us back to 1 automatically
+
+Impure layer comes as redux middleware (hooks to actions and store changes)
+
+???
+
+Show tooling live to indicate examples of how redux helps us visualize & track state
+
+
+---
+
+# Checkpoint
+
+By now you are hopefully convinced that 
+
+- React Native tooling provides a nice developer experience
+- We can build a solid frontend architecture around it
+- React apps should be "boring", the Redux pattern makes everything that's not logic specific boilerplate / standarized.
+- Coding in TypeScript doesn't suck
+
+This seems to be enough for a single team that wants to contribute to the native apps. 
+But what about multiple RN components within the same application?
+
+---
+
+# Multiple RN components (i.e "jigsaw")
+
+- Show communication between the RN components.
+- Show how the application is changing from one to the next and booting
+
+---
+
+# Web-like release agility
+
+TODO: Use this to test the demo
+
+http://samwize.com/2017/01/19/guide-to-integrating-codepush-for-ios-react-native-project/
+
+- Bypass iOS/Play Store using Microsoft's [CodePush](https://microsoft.github.io/code-push/index.html)
+- Decoupled releases between teams (no need for big-bang releases for changes within RN side)
+- Should be ok [legally](https://microsoft.github.io/code-push/faq/index.html#1-does-the-apple-app-store-allow-developers-to-perform-these-types-of-updates) for reasonable changes
+- Should work for [hybrid apps](https://github.com/Microsoft/react-native-code-push/issues/663#issuecomment-276346413) as well
+- [Might not currently work](http://stackoverflow.com/questions/38529114/how-to-use-multiple-reactnativehosts-for-codepush-within-one-application#answer-38541855) for independent codepushes of multiple RN modules within an app (but fix doable)  
+
+---
+
+# React Native Advantages
+
+### Developer side
+
+- The React architecture is hard to beat, excellent community support & documentation around it.
+- TypeScript (& JS) acquire new features all the time that can be used through transpilation (no more stuck on whatever Java features Google supports)
+- Web-experience team can build RN component library, equivalent to current web one.
+- As a CXP developer I can use what I know and produce results much faster than having to learn iOS/Android from scratch
+
+
+### Product side
+
+- Mobile team keeps maintaining the overall "backend" of the app, different pages can be transitioned independently.
+- Faster time to market for "mobile-first" transition
+- Teams can update application independently and anytime*
+- Easier to hire JS/React developers than mobile ones (specially Scala+JS)
+- Mobile developers can transition into "regular" developers through time.
+
+---
+
+# React Native Disadvantages
+
+- Existing views that we want to move to RN will have to be fully ported from scratch (maybe an advantage :) ) 
+- Unforeseen technical difficulties
+- ...
+
+---
+
+# I have a dream...
+
+- Build and use a "state-of-the-art" architecture/programming patterns across Web & Mobile
+- All CXP experience teams benefit from that and take it as a solid starting point
+- Freedom within each team allows for changes/evolution -> Feedback comes back to other teams, architecture is updated
+- High knowledge sharing within & across teams
+
+---
+
+# Next steps
+
+- Decide on whether the React Native approach is worth pursuing
+- Implement a POC inside the current iOS / Android apps to test in the context of a "heavy" native application
+- Analyze performance, package size and technicalities that could be deal-breakers. 
+
+---
+
+class: center, middle
+
+# The end!
+
+### Questions??
+
+---
+
+# References
+
+- [Redux intro](https://scotch.io/bar-talk/getting-started-with-redux-an-intro)
+
+
+
+    </textarea>
+  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+
+  </script>
+  <script>
+    var slideshow = remark.create({
+      highlightLines: true,
+      highlightStyle: "github",
+      // highlightSpans: true,
+    });
+  </script>
+</body>
+
+</html>
