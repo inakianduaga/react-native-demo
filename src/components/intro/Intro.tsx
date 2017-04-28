@@ -23,8 +23,8 @@ const Intro = ({ dispatch }: IProps) => {
           <WelcomeIos style={styles.instructions} /> :
           <WelcomeAndroid style={styles.instructions} />
       }
-      <View style={{ backgroundColor: '#0dbd0d', marginTop: '10%', padding: '1%', width: "100%", }}>
-        <Button title="Go to Movies &raquo;" color="white" onPress={navigateToListings} />
+      <View style={ styles.button }>
+        <Button title="Go to Movies &raquo;" color={Platform.OS === 'ios' ? 'white': '#0dbd0d' } onPress={navigateToListings} />
       </View>
     </View>
   )
@@ -37,7 +37,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#F5FCFF",
   } as ViewStyle,
-
+  button: Object.assign({
+    marginTop: '10%', padding: '1%', width: "100%",
+  }, 
+    Platform.OS === 'ios' ? {
+      backgroundColor: '#0dbd0d'
+    } : {}
+  ),
   welcome: {
     fontSize: 20,
     textAlign: "center",

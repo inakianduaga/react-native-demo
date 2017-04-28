@@ -6,6 +6,7 @@
     "start": "react-native start --skipflow & tsc -w",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "ios-release": "react-native run-ios --configuration Release",
     "build": "tsc",
     "prebuild": "rimraf build",
     "prestart": "rimraf build",

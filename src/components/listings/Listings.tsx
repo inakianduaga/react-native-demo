@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button, ScrollView, Image } from "react-native";
+import { View, Text, Button, ScrollView, Image, Platform } from "react-native";
 import { Dispatch } from 'redux'
 const { Column: Col, Row } = require('react-native-flexbox-grid')
 
@@ -79,8 +79,8 @@ const Listings = (props: IProps) => {
         null
       }
 
-      <View style={{ backgroundColor: '#222', marginTop: '15%', padding: '1%', width: "100%" }}>
-          <Button title="&laquo; Back to Intro" color="white" onPress={navigateToIntro} />
+      <View style={{ backgroundColor: Platform.OS === 'ios' ? '#222' : undefined, marginTop: '15%', padding: '1%', width: "100%" }}>
+          <Button title="&laquo; Back to Intro" color={ Platform.OS === 'ios' ? 'white': '#222' } onPress={navigateToIntro} />
       </View>
 
     </View>
