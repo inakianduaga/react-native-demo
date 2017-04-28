@@ -1,6 +1,6 @@
 import * as IAction from '../actions/IAction'
 import { Record } from 'immutable'
-import { UIManager } from 'react-native'
+import NavigationUpdate from '../components/common/NavigationUpdate'
 
 export type INavigationState = 'intro' | 'listings' | 'detail'
 
@@ -17,9 +17,8 @@ export type IStateRecord = Record.Instance<IState>
 
 const initialStateRecord: IStateRecord = new (Record(initialState, "Navigation state record"))()
 
-const navigateTo = (state: IStateRecord, action: IAction.INavigateTo) => {  
-  console.log((UIManager as any).navigationUpdate);
-  (UIManager as any).navigationUpdate && (UIManager as any).navigationUpdate(action.payload)
+const navigateTo = (state: IStateRecord, action: IAction.INavigateTo) => {    
+  NavigationUpdate.update(action.payload)
   return state.set('navigation', action.payload)
 }
 
