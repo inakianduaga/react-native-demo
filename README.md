@@ -11,6 +11,7 @@
 - [x] Jest (preconfigured for typescript) 
 - [x] Redux observable for action observables
 - [x] Redux remote devtools integration
+- [x] Example of communication between [React Native](./src/components/common/NavigationUpdate.ts) & [Android Native app](./android/app/src/main/java/com/reactnativets/navigation/NavigationUpdateModule.java)   
 - [ ] Codepush integration
 
 ## Quick Demo:
