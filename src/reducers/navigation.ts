@@ -18,7 +18,7 @@ export type IStateRecord = Record.Instance<IState>
 const initialStateRecord: IStateRecord = new (Record(initialState, "Navigation state record"))()
 
 const navigateTo = (state: IStateRecord, action: IAction.INavigateTo) => {    
-  NavigationUpdate.update(action.payload)
+  NavigationUpdate && NavigationUpdate.update(action.payload)
   return state.set('navigation', action.payload)
 }
 
