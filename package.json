@@ -5,6 +5,7 @@
   "scripts": {
     "start": "react-native start --skipflow & tsc -w",
     "android": "react-native run-android",
+    "android:apk": "cd ./android && ./gradlew assembleRelease",
     "ios": "react-native run-ios",
     "ios-release": "react-native run-ios --configuration Release",
     "build": "tsc",
