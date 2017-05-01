@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
+import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -25,8 +26,17 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-          new NavigationUpdatePackage()
+        new MainReactPackage(),
+        new NavigationUpdatePackage(),
+        // https://microsoft.github.io/code-push/docs/react-native.html#link-5
+        // Instantiate an instance of the CodePush runtime and add it to the list of
+        // existing packages, specifying the right deployment key. If you don't already
+        // have it, you can run "code-push deployment ls <appName> -k" to retrieve your key.
+        new CodePush(
+                getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey),
+                getApplicationContext(),
+                BuildConfig.DEBUG
+        )
       );
     }
   };

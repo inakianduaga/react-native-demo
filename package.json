@@ -22,7 +22,10 @@
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "testResultsProcessor": "<rootDir>/node_modules/ts-jest/coverageprocessor.js",
-    "collectCoverageFrom": ["src/**/*.ts", "src/**/*.tsx"],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -40,6 +43,7 @@
     "immutable": "4.0.0-rc.1",
     "react": "^16.0.0-alpha.6",
     "react-native": "^0.43.3",
+    "react-native-code-push": "^2.0.2-beta",
     "react-native-flexbox-grid": "^0.3.1",
     "react-native-git-upgrade": "^0.2.7",
     "react-redux": "^5.0.3",
