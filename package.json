@@ -6,6 +6,7 @@
     "start": "react-native start --skipflow & tsc -w",
     "android": "react-native run-android",
     "android:apk": "cd ./android && ./gradlew assembleRelease",
+    "android:apkSigned": "react-native run-android --variant=release",
     "ios": "react-native run-ios",
     "ios-release": "react-native run-ios --configuration Release",
     "build": "tsc",
