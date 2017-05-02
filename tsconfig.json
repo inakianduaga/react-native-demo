@@ -2,6 +2,7 @@
     "compilerOptions": {
         "target": "es2015",
         "module": "es2015",
+        "moduleResolution": "node",
         "jsx": "react",
         "outDir": "build",
         "rootDir": "./src",
@@ -21,12 +22,7 @@
         "noEmitOnError": true,
         "baseUrl": ".",
         "paths": {
-            "*": ["*", "*.ios", "*.android"],
-            "redux": ["node_modules/redux/index.d.ts"],
-            "redux-observable": ["node_modules/redux-observable/index.d.ts"],
-            "immutable": ["node_modules/immutable/dist/immutable.d.ts"],
-            "rxjs": ["node_modules/rxjs/Rx.d.ts"],
-            "react-native-code-push": ["node_modules/react-native-code-push/typings/react-native-code-push.d.ts"]
+            "*": ["*", "*.ios", "*.android"]
         }
     },
     "filesGlob": [
