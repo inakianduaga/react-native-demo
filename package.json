@@ -7,15 +7,18 @@
     "android": "react-native run-android",
     "android:apk": "cd ./android && ./gradlew assembleRelease",
     "android:apkSigned": "react-native run-android --variant=release",
+    "android:codePush:staging": "code-push release ReactNative-Android ./build/Index.js '*' -d Staging",
+    "android:logs": "react-native log-android",
     "ios": "react-native run-ios",
-    "ios-release": "react-native run-ios --configuration Release",
+    "ios:release": "react-native run-ios --configuration Release", 
+    "ios:logs": "react-native log-ios",
     "build": "tsc",
-    "prebuild": "rimraf build",
-    "prestart": "rimraf build",
-    "upgrade-react-native": "react-native-git-upgrade",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "prebuild": "rimraf build",
+    "prestart": "rimraf build",
+    "upgrade-react-native": "react-native-git-upgrade"
   },
   "jest": {
     "transform": {
