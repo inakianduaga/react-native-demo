@@ -17,7 +17,7 @@ public class MovieDetailsActivity extends ReactActivity {
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
         imdbId = intent.getStringExtra(NavigationUpdateModule.IMDB_ID);
-        Log.d("MOVIE_IMDB_ID", imdbId);
+        Log.i("MOVIE_DETAILS_ACT_ID", imdbId);
     }
 
     /**
