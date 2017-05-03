@@ -24,10 +24,10 @@ class App extends Component<IProps, IState> {
 let WrappedApp;
 if(Platform.OS === 'android') {
   WrappedApp = codePush({
-    checkFrequency: codePush.CheckFrequency.ON_APP_RESUME, 
+    checkFrequency: codePush.CheckFrequency.MANUAL, 
     installMode: codePush.InstallMode.ON_NEXT_RESUME 
   })(App);
-}
+} 
 
 // For Android, we deploy CodePush wrap, iOS standard (until implemented)
 export default Platform.OS === 'ios' ? App : WrappedApp;

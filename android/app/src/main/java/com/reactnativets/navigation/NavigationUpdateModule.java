@@ -44,8 +44,9 @@ public class NavigationUpdateModule extends ReactContextBaseJavaModule {
         Log.i("NAV_MOVIE_DETAILS", imdbId);
 
         // Switch to movie details activity and pass id
-        Intent intent = new Intent(this.getReactApplicationContext().getApplicationContext(), MovieDetailsActivity.class);
-        intent.putExtra(IMDB_ID, imdbId);
+        Intent intent = new Intent(getReactApplicationContext(), MovieDetailsActivity.class)
+            .putExtra(IMDB_ID, imdbId)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         this.getReactApplicationContext().getApplicationContext().startActivity(intent);
         Log.i("SHOULD_START_ACTIVITY", imdbId);
     }
