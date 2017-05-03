@@ -23,7 +23,7 @@ const navigateTo = (state: IStateRecord, action: IAction.INavigateTo) => {
 }
 
 const navigateToDetails = (state: IStateRecord, action: IAction.INavigateToDetails) => {    
-  NavigationUpdate.navigateToMovieDetails(action.payload)
+  NavigationUpdate && NavigationUpdate.navigateToMovieDetails(action.payload)
   return state.set('navigation', 'detail')
 }
 
