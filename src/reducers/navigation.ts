@@ -22,10 +22,17 @@ const navigateTo = (state: IStateRecord, action: IAction.INavigateTo) => {
   return state.set('navigation', action.payload)
 }
 
+const navigateToDetails = (state: IStateRecord, action: IAction.INavigateToDetails) => {    
+  NavigationUpdate.navigateToMovieDetails(action.payload)
+  return state.set('navigation', 'detail')
+}
+
 const reducer = (state = initialStateRecord, action: IAction.IApplicationAction): IStateRecord => {
   switch (action.type) {
     case IAction.NAVIGATE_TO:
       return navigateTo(state, action);
+    case IAction.NAVIGATE_TO_DETAILS:
+      return navigateToDetails(state, action)
     default:
       return state;
   }
