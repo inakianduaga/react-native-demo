@@ -5,7 +5,8 @@
 import { NativeModules } from 'react-native';
 
 type INavigationUpdate = {
-    update: (to: string) => void
+    update: (to: string) => void,
+    navigateToMovieDetails: (imbdId: string) => void
 }
 
 const NavigationUpdateModule: INavigationUpdate  = (NativeModules as any).NavigationUpdateModule;
