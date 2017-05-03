@@ -79,7 +79,7 @@ const Listings = (props: IProps) => {
         null
       }
 
-      <View style={{ backgroundColor: Platform.OS === 'ios' ? '#222' : undefined, marginTop: '15%', padding: '1%', width: "100%" }}>
+      <View style={{ backgroundColor: Platform.OS === 'ios' ? '#222' : undefined, marginTop: '10%', padding: '1%', width: "100%" }}>
           <Button title="&laquo; Back to Intro" color={ Platform.OS === 'ios' ? 'white': '#222' } onPress={navigateToIntro} />
       </View>
 
