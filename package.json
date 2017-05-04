@@ -6,7 +6,7 @@
     "start": "react-native start --skipflow & tsc -w",
     "android": "react-native run-android",
     "android:apk": "cd ./android && ./gradlew assembleRelease",
-    "android:apkSigned": "react-native run-android --variant=release",
+    "android:release": "react-native run-android --variant=release",
     "android:codepush:staging": "code-push release-react ReactNative-Android android -d Staging",
     "android:codepush:stagingTest": "tsc && react-native bundle --entry-file build/Index.js --dev false --platform android --bundle-output build/bundle.js && code-push release ReactNative-Android ./build/bundle.js '*' -d Staging",
     "android:logs": "react-native log-android",
