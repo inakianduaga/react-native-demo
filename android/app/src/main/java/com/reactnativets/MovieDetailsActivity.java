@@ -26,7 +26,7 @@ public class MovieDetailsActivity extends ReactActivity {
                 Bundle bundle = new Bundle();
                 // Start our application on the intro page
                 bundle.putString("navigation", "detail");
-                bundle.putString("imdb", imdbId);
+                bundle.putString("imdbId", imdbId);
                 return bundle;
             }
         };

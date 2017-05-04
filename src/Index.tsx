@@ -3,9 +3,15 @@ import React, { Component } from "react";
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore'
 import Main from "./containers/App";
+import { INavigationState } from './reducers/navigation';
 // import codePush from "react-native-code-push";
 
-type IProps = {}
+type IProps = {
+  /* Android will always pass a navigation prop, but iOS might not */
+  navigation?: INavigationState,
+  /* This will only be available on android on the detail page */
+  imdbId?: string
+}
 type IState = {}
 
 const store = configureStore();
