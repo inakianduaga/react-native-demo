@@ -253,14 +253,6 @@ class: center, middle
 - Can it be "a jigsaw" for mobile?
 ]
 
---
-
-# How?
-.inline-block.align-left[
-- Go over at how a modern React workflow looks like in 2017
-- Take a look at a small [React Native POC](https://github.com/inakianduaga/react-native-demo)
-]
-
 ---
 
 class: 
@@ -295,11 +287,12 @@ class:
 
 --
 
-What about existing iOS/Android apps that live in separate repositories? 
+How do we connect the native side to the TypeScript side?
+
 --
  looks fundamentally possible, needs to be investigated further.
 
-??? 
+???
 
 After going through the folder bullets browse repository and show how the RN native apps actually bind to the JS server
 
@@ -327,6 +320,7 @@ Launch dev environment
 
 Go over:
 
+- Introduce POC project
 - Platform-specific logic (intro screen)
 - Hot reloading
 - Inspector / Network watcher 
@@ -385,7 +379,7 @@ What do we expect from a modern frontend app (irregardless of platform)?
 --
 
 <p style="margin-top: 1.5em">
-Can React & Javascript take us there?
+Can React & TypeScript take us there?
 </p>
 
 ---
@@ -465,6 +459,14 @@ State-management library
 
 4. React takes us back to 1 automatically
 
+--
+
+Visualize state and changes using Redux devtools!
+
+???
+
+Show demo of actions in the dev tool
+
 ---
 
 # Redux middleware
@@ -478,10 +480,6 @@ State-management library
 - Http fetchs are middleware
 - Redux devtools are middleware
 - ...
-
-???
-
-Show demo of actions in the dev tool
 
 ---
 
@@ -501,16 +499,12 @@ But what about multiple RN components within the same application?
 
 # Multiple RN components (i.e "jigsaw")
 
-- Show communication between the RN components.
+- Navigation example: Show communication between the RN frontend and native backend.
 - Show how the application is changing from one to the next and booting
 
 ---
 
 # Web-like release agility
-
-TODO: Use this to test the demo
-
-http://samwize.com/2017/01/19/guide-to-integrating-codepush-for-ios-react-native-project/
 
 - Bypass iOS/Play Store using Microsoft's [CodePush](https://microsoft.github.io/code-push/index.html)
 - Decoupled releases between teams (no need for big-bang releases for changes within RN side)
@@ -525,10 +519,13 @@ http://samwize.com/2017/01/19/guide-to-integrating-codepush-for-ios-react-native
 ### Developer side
 
 - The React architecture is hard to beat, excellent community support & documentation around it.
-- TypeScript (& JS) acquire new features all the time that can be used through transpilation (no more stuck on whatever Java features Google supports)
+- TypeScript (& JS) acquire new features all the time that can be used through transpilation (no more stuck on whatever Java features Google supports).
 - Web-experience team can build RN component library, equivalent to current web one.
 - As a CXP developer I can use what I know and produce results much faster than having to learn iOS/Android from scratch
 
+--
+
+### Developer side
 
 ### Product side
 
@@ -576,8 +573,8 @@ class: center, middle
 # References
 
 - [Redux intro](https://scotch.io/bar-talk/getting-started-with-redux-an-intro)
-
-
+- [Artsy moving to React Native](http://artsy.github.io/blog/2017/02/05/Retrospective-Swift-at-Artsy/)
+- [Against React Native](https://arielelkin.github.io/articles/why-im-not-a-react-native-developer.html): Most RN drawbacks mentioned here don't apply when using the architecture described in this presentation
 
     </textarea>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.js">
