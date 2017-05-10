@@ -496,16 +496,16 @@ But what about multiple RN components within the same application?
 # Multiple RN components (i.e "jigsaw")
 
 - Navigation example: Show communication between the RN frontend and native backend.
-- Show how the application is changing from one to the next and booting
+- Show how the native android application is changing views from one React Native application to the next and rebooting
 
 ---
 
 # Web-like release agility
 
 - Bypass iOS/Play Store using Microsoft's [CodePush](https://microsoft.github.io/code-push/index.html)
+- [Quick Demo](https://cloud.githubusercontent.com/assets/4490289/25916209/23588a12-35c4-11e7-92f2-d83cc9c27ceb.gif) 
 - Decoupled releases between teams (no need for big-bang releases for changes within RN side)
 - Should be ok [legally](https://microsoft.github.io/code-push/faq/index.html#1-does-the-apple-app-store-allow-developers-to-perform-these-types-of-updates) for reasonable changes
-- Should work for [hybrid apps](https://github.com/Microsoft/react-native-code-push/issues/663#issuecomment-276346413) as well
 - [Might not currently work](http://stackoverflow.com/questions/38529114/how-to-use-multiple-reactnativehosts-for-codepush-within-one-application#answer-38541855) for independent codepushes of multiple RN modules within an app (but fix doable)  
 
 ---
@@ -528,9 +528,9 @@ But what about multiple RN components within the same application?
 ### Product side
 
 - Mobile team keeps maintaining the overall "backend" of the app, different pages can be transitioned independently.
-- Faster time to market for "mobile-first" transition
-- Teams can update application independently and anytime*
 - Easier to hire JS/React developers than mobile ones (specially Scala+JS)
+- Teams can update application independently and anytime*
+- Faster time to market for "mobile-first" transition
 - Mobile developers can transition into "regular" developers through time.
 
 ---
